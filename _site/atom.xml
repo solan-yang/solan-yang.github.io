@@ -4,7 +4,7 @@
  <title></title>
  <link href="http://www.yangzhihao.com/atom.xml" rel="self"/>
  <link href="http://www.yangzhihao.com"/>
- <updated>2017-11-14T23:43:19+08:00</updated>
+ <updated>2017-11-15T00:06:21+08:00</updated>
  <author>
    <name>杨志浩</name>
    <email>goddot@126.com</email>
@@ -200,7 +200,7 @@ Jekyll 的核心其实是一个文本转换引擎。它的概念其实就是： 
  </entry>
  
  <entry>
-   <title>关于个人博客网站-Jekyll应用</title>
+   <title>Jekyll-问题汇总</title>
    <link href="http://www.yangzhihao.com/posts/jekyll%E6%96%87%E7%A8%BF%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98.html"/>
    <updated>2017-11-14T00:00:00+08:00</updated>
    <id>/posts/jekyll文稿中文问题</id>
