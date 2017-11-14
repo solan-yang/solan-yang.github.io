@@ -8,6 +8,7 @@ author: "杨志浩"
 email: goddot@126.com
 name: "杨志浩个人博客"
 url: http://127.0.0.1:4000
+baseurl:     /
 domain: www.yangzhihao.com
 all_categories: [
 ["finance&accounting", "金融财务","/posts/finance.html"], 
