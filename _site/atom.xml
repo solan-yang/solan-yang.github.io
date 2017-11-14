@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title></title>
+ <link href="http://www.yangzhihao.com/atom.xml" rel="self"/>
+ <link href="http://www.yangzhihao.com"/>
+ <updated>2017-11-14T21:52:40+08:00</updated>
+ <author>
+   <name>杨志浩</name>
+   <email>goddot@126.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>关于个人博客网站-Jekyll应用</title>
+   <link href="http://www.yangzhihao.com/posts/%E5%85%B3%E4%BA%8E%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99-Jekyll%E5%BA%94%E7%94%A8.html"/>
+   <updated>2017-11-14T00:00:00+08:00</updated>
+   <id>/posts/关于个人博客网站-Jekyll应用</id>
+   <content type="html">&lt;p&gt;在大学本科毕业的时候，自己对建站有很深的兴趣，希望能够建成一个自己的网站。但是事与愿违，后续的工作的内容与web差异很大，以致于后续网站的建设一直在心里放着。前段时间，自己偶然在上网的时候看到一个github+Jekyll的免费个人博客方案，自己也十分感兴趣。后续也了解下。这两天刚好项目不是很忙，自己按照教程的方案，下载了一系列的模板还是自己建站之旅。
+这篇文章主要是针对Jekyll的应用进行梳理。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h3 id=&quot;jekyll介绍&quot;&gt;Jekyll介绍&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://baike.baidu.com/item/jekyll/1164861?fr=aladdin&quot;&gt;jekyll&lt;/a&gt;是一个简单的免费的Blog生成工具，类似WordPress。但是和WordPress又有很大的不同，原因是jekyll只是一个生成静态网页的工具，不需要数据库支持。但是可以配合第三方服务,例如Disqus。最关键的是jekyll可以免费部署在Github上，而且可以绑定自己的域名。
+Jekyll 的核心其实是一个文本转换引擎。它的概念其实就是： 你用你最喜欢的标记语言来写文章，可以是 Markdown，也可以是 Textile,或者就是简单的 HTML, 然后 Jekyll 就会帮你套入一个或一系列的布局中。在整个过程中你可以设置URL路径, 你的文本在布局中的显示样式等等。这些都可以通过纯文本编辑来实现，最终生成的静态页面就是你的成品了。&lt;/p&gt;
+
+&lt;h3 id=&quot;jekyll技术架构介绍&quot;&gt;Jekyll技术架构介绍&lt;/h3&gt;
+&lt;h4 id=&quot;jekyll解析流程&quot;&gt;Jekyll解析流程&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;首先会加载_posts及文件夹下的所有文章，将其参数和文章内容组织保存在内存中，所有的文章的内容、参数都在site.posts对象（其他文件夹下的文章不会放入site.posts中）。&lt;/li&gt;
+  &lt;li&gt;其次加载_layouts文件夹下的所有模板。&lt;/li&gt;
+  &lt;li&gt;再次加载_includes文件夹下的所有需要被引入的内容。&lt;/li&gt;
+  &lt;li&gt;最后根据每一篇需要编译的文章选择的其参数定义的模板来创建一个模板，并将当前文章的内容、参数等进行扩展后放在page对 象、content对象中，然后进行模板的编译，生成html文件，并按照一定规则放在_site文件夹下。也就是说在创建一篇文章时，其实所有文章的内容都已经被读取出来了，这也为文章相互之间的关联提供了可能。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;jekyll目录结构介绍&quot;&gt;Jekyll目录结构介绍&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;.   
+
+|--_config.yml&amp;gt;  
+
+|--_drafts  
+
+       |--articles1.textile 
+
+    |--articles2.md
+
+|--_includes
+
+    |--footer.html
+
+    |--header.html
+
+|--_layouts
+
+    |--default.html
+
+    |--post.html
+
+|--_posts
+
+    |--2014-06-17-articles1.textile
+
+    |--2014-06-17-articles1.md
+
+|--_site
+
+|--index.html
+|--other files
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+  &lt;li&gt;_config.yml：保存配置数据。&lt;/li&gt;
+  &lt;li&gt;&lt;/li&gt;
+  &lt;li&gt;_drafts：存放未发布的文章。&lt;/li&gt;
+  &lt;li&gt;_includes：存放页面片段，即页头（head.html）、页脚（footer.html）、导航（navigation.html）、评论（disqus&lt;/li&gt;
+  &lt;li&gt;_comments.html）等，这些资源通过标签添加到index.html中，从而形成一个完整的页面。&lt;/li&gt;
+  &lt;li&gt;_layouts：存放模板文件。文章模板、关于页面模板、首页模板等。&lt;/li&gt;
+  &lt;li&gt;_posts：存放文章的文件。并且文章文件名称要符合YEAR-MONTH-DAY-title.MARKUP格式。&lt;/li&gt;
+  &lt;li&gt;_site：经过jekyll转换的页面。index.html：网站首页。other files：其他文件，存放css、js、image等。&lt;/li&gt;
+  &lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;jekyllwindow部署过程&quot;&gt;Jekyll（window）部署过程&lt;/h3&gt;
+&lt;p&gt;安装软件：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/oneclick/rubyinstaller2/releases/download/rubyinstaller-2.4.2-2/rubyinstaller-2.4.2-2-x64.exe&quot;&gt;Ruby2.4.2p198&lt;/a&gt;&amp;amp;Ruby Development Kit (DevKit是一套windows平台下编译和使用本地C/C++扩展包的工具。64位Windows7下MinGW64/MSYS环境，ruby extend compile 需要的包。包含 mingw 和 mysys，它就是用来模拟Linux平台下的make, gcc, sh来进行编译。)&lt;/li&gt;
+  &lt;li&gt;Jekyll&lt;/li&gt;
+  &lt;li&gt;Python : (注:官方支持使用2.7.5，不建议使用3.我本机window使用Python3.6目前没有出现大的问题)&lt;/li&gt;
+  &lt;li&gt;Pygments&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;详细内容见： &lt;a href=&quot;http://www.madhur.co.in/blog/2011/09/01/runningjekyllwindows.html&quot;&gt;Running Jekyll on Windows&lt;/a&gt;&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>企业会计准则第16号——政府补助2017</title>
+   <link href="http://www.yangzhihao.com/posts/%E4%BC%81%E4%B8%9A%E4%BC%9A%E8%AE%A1%E5%87%86%E5%88%99%E7%AC%AC16%E5%8F%B7-%E6%94%BF%E5%BA%9C%E8%A1%A5%E5%8A%A9.html"/>
+   <updated>2017-11-14T00:00:00+08:00</updated>
+   <id>/posts/企业会计准则第16号——政府补助</id>
+   <content type="html">&lt;p&gt;作者：财政部来源：发表于：2017-05-25&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;&lt;strong&gt;第一章&lt;/strong&gt;  总则&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第一条&lt;/strong&gt;  为了规范政府补助的确认、计量和相关信息的披露，根据《企业会计准则——基本准则》，制定本准则。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第二条&lt;/strong&gt;  政府补助，是指企业从政府无偿取得货币性资产或非货币性资产，但不包括政府作为企业所有者投入的资本。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第三条&lt;/strong&gt;  政府补助具有下列特征：【增】&lt;/p&gt;
+
+&lt;p&gt;（一）来源于政府的经济资源。对于企业收到的来源于其他方的补助，有确凿证据表明政府是补助的实际拨付者，其他方只起到代收代付作用的，该项补助也属于来源于政府的经济资源。
+（二）无偿性。即企业取得来源于政府的经济资源，不需要向政府交付商品或服务等对价。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第四条&lt;/strong&gt;  政府补助分为与资产相关的政府补助和与收益相关的政府补助。
+与资产相关的政府补助，是指企业取得的、用于购建或以其他方式形成长期资产的政府补助。
+与收益相关的政府补助，是指除与资产相关的政府补助之外的政府补助。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第四条&lt;/strong&gt;  下列各项适用其他相关会计准则：【改】&lt;/p&gt;
+
+&lt;p&gt;（一）  企业从政府取得的经济资源，如果与企业销售商品或
+提供服务等活动密切相关，且是企业商品或服务的对价或者是对价的组成部分，适用《企业会计准则第14号——收入》等相关会计准则。
+（二）所得税减免，适用《企业会计准则第 18 号——所得税》。
+政府以投资者身份向企业投入资本，享有相应的所有者权益，不适用本准则。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第二章&lt;/strong&gt;  确认和计量&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第六条&lt;/strong&gt;  政府补助同时满足下列条件的，才能予以确认：&lt;/p&gt;
+
+&lt;p&gt;（一）企业能够满足政府补助所附条件；
+（二）企业能够收到政府补助。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第七条&lt;/strong&gt;  政府补助为货币性资产的，应当按照收到或应收的金额计量。
+政府补助为非货币性资产的，应当按照公允价值计量；公允价值不能可靠取得的，按照名义金额计量。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第八条&lt;/strong&gt;  与资产相关的政府补助，应当冲减相关资产的账面价值或确认为递延收益。与资产相关的政府补助确认为递延收益的，应当在相关资产使用寿命内按照合理、系统的方法分期计入损益。按照名义金额计量的政府补助，直接计入当期益。相关资产在使用寿命结束前被出售、转让、报废或发生毁损的，应当将尚未分配的相关递延收益余额转入资产处置当期的损益。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第九条&lt;/strong&gt;  与收益相关的政府补助，应当分情况按照以下规定进行会计处理：&lt;/p&gt;
+
+&lt;p&gt;（一）用于补偿企业以后期间的相关成本费用或损失的，确认为递延收益，并在确认相关成本费用或损失的期间，计入当期损益或冲减相关成本；
+（二）用于补偿企业已发生的相关成本费用或损失的，直接计入当期损益或冲减相关成本。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第十条&lt;/strong&gt;
+对 于同时包含与资产相关部分和与收益相关部分的政府补助，应当区分不同部分分别进行会计处理；难以区分的，应当整体归类为与收益相关的政府补助。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第十一条&lt;/strong&gt;
+与企业日常活动相关的政府补助，应当按照经济业务实质，计入其他收益或冲减相关成本费用。与企业日常活动无关的政府补助，应当计入营业外收支。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第十二条&lt;/strong&gt;
+企业取得政策性优惠贷款贴息的，应当区分财政将贴息资金拨付给贷款银行和财政将贴息资金直接拨付给企业
+两种情况，分别按照本准则
+&lt;strong&gt;第十三条&lt;/strong&gt;和
+&lt;strong&gt;第十四条&lt;/strong&gt;进行会计处理。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第十三条&lt;/strong&gt;
+财政将贴息资金拨付给贷款银行，由贷款银行以政策性优惠利率向企业提供贷款的，企业可以选择下列方法之一
+进行会计处理：&lt;/p&gt;
+
+&lt;p&gt;（一）以实际收到的借款金额作为借款的入账价值，按照借款本金和该政策性优惠利率计算相关借款费用。
+（二）以借款的公允价值作为借款的入账价值并按照实际利率法计算借款费用，实际收到的金额与借款公允价值之间的差额确认为递延收益。递延收益在借款存续期内采用实际利率法摊销，冲减相关借款费用。企业选择了上述两种方法之一后，应当一致地运用，不得随意变更。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第十四条&lt;/strong&gt;
+财政将贴息资金直接拨付给企业，企业应当将对应的贴息冲减相关借款费用。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第十五条&lt;/strong&gt;
+已确认的政府补助需要退回的，应当在需要退回的当期分情况按照以下规定进行会计处理：&lt;/p&gt;
+
+&lt;p&gt;（一）初始确认时冲减相关资产账面价值的，调整资产账面价值；
+（二）存在相关递延收益的，冲减相关递延收益账面余额，超出部分计入当期损益；
+（三）属于其他情况的，直接计入当期损益。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第三章&lt;/strong&gt;  列报&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第十六条&lt;/strong&gt;
+企业应当在利润表中的“营业利润”项目之上单独列报“其他收益”项目，计入其他收益的政府补助在该项目中反映。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第十七条&lt;/strong&gt;
+企业应当在附注中单独披露与政府补助有关的下列信息：&lt;/p&gt;
+
+&lt;p&gt;（一）政府补助的种类、金额和列报项目；
+（二）计入当期损益的政府补助金额；
+（三）本期退回的政府补助金额及原因。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第四章&lt;/strong&gt;  衔接规定&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第十八条&lt;/strong&gt;  企业对2017年1月1日存在的政府补助采用未来适用法处理，对2017年1月1日至本准则施行日之间新增的政府补助根据本准则进行调整。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第五章&lt;/strong&gt;  附则&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第十九条&lt;/strong&gt;  本准则自2017年6月12日起施行。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第二十条&lt;/strong&gt;2006年2月15日财政部印发的《财政部关于印发〈企业会计准则
+**第1号——存货〉等38项具体准则的通知》（财会〔2006〕3号）中的《企业会计准则
+**第16号——政府补助》同时废止。
+财政部此前发布的有关政府补助会计处理规定与本准则不一致的，以本准则为准。&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>关于个人博客网站-Jekyll应用</title>
+   <link href="http://www.yangzhihao.com/posts/jekyll%E6%96%87%E7%A8%BF%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98.html"/>
+   <updated>2017-11-14T00:00:00+08:00</updated>
+   <id>/posts/jekyll文稿中文问题</id>
+   <content type="html">&lt;p&gt;今天在写博的时候，发现新建一个md文件，jekyll报404错误。后来发现是ruby对文件不够彻底。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;修改安装目录\Ruby22-x64\lib\ruby\2.2.0\webrick\httpservlet下的filehandler.rb文件，建议先备份。
+一起有两处修改的地方，加号为添加的语句。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;path = req.path_info.dup.force_encoding(Encoding.find(&quot;filesystem&quot;))
++ path.force_encoding(&quot;UTF-8&quot;) # 加入编码
+if trailing_pathsep?(req.path_info)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;break if base == &quot;/&quot;
++ base.force_encoding(&quot;UTF-8&quot;) #加入編碼
+break unless File.directory?(File.expand_path(res.filename + base))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;修改完重新jekyll serve即可支持中文文件名。&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>markdown简单用法</title>
+   <link href="http://www.yangzhihao.com/posts/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%85%B3%E4%BA%8Emarkdown.html"/>
+   <updated>2017-11-13T00:00:00+08:00</updated>
+   <id>/posts/第一篇文章关于markdown</id>
+   <content type="html">&lt;p&gt;Markdown是一款标记语言，能够减轻在排版上的工作量。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h3 id=&quot;标题1&quot;&gt;标题1&lt;/h3&gt;
+&lt;p&gt;这是最为常用的格式，在平时常用的的文本编辑器中大多是这样实现的：输入文本、选中文本、设置标题格式。&lt;/p&gt;
+
+&lt;p&gt;而在 Markdown 中，你只需要在文本前面加上 # 即可，同理、你还可以增加二级标题、三级标题、四级标题、五级标题和六级标题，总共六级，只需要增加 # 即可，标题字号相应降低。例如：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;h1 id=&quot;一级标题&quot;&gt;一级标题&lt;/h1&gt;
+  &lt;h2 id=&quot;二级标题&quot;&gt;二级标题&lt;/h2&gt;
+  &lt;h3 id=&quot;三级标题&quot;&gt;三级标题&lt;/h3&gt;
+  &lt;h4 id=&quot;四级标题&quot;&gt;四级标题&lt;/h4&gt;
+  &lt;h5 id=&quot;五级标题&quot;&gt;五级标题&lt;/h5&gt;
+  &lt;h6 id=&quot;六级标题&quot;&gt;六级标题&lt;/h6&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;列表&quot;&gt;列表&lt;/h3&gt;
+&lt;p&gt;列表格式也很常用，在 Markdown 中，你只需要在文字前面加上 - 就可以了，例如：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;项目符号：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;- 文本1
+- 文本2
+- 文本3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;预览：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;文本1&lt;/li&gt;
+  &lt;li&gt;文本2&lt;/li&gt;
+  &lt;li&gt;文本3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;编号：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; 1. 文本1
+ 2. 文本2
+ 3. 文本3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;预览：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;文本1&lt;/li&gt;
+  &lt;li&gt;文本2&lt;/li&gt;
+  &lt;li&gt;文本3&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;注：-、1.和文本之间要保留一个字符的空格。&lt;/p&gt;
+&lt;h3 id=&quot;链接和图片&quot;&gt;链接和图片&lt;/h3&gt;
+&lt;p&gt;在 Markdown 中，插入链接不需要其他按钮，你只需要使用 &lt;a href=&quot;链接地址&quot;&gt;显示文本&lt;/a&gt; 这样的语法即可。
+例如1：&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;  [简书](http:www.jianshu.com) &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;最终显示：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http:www.jianshu.com&quot;&gt;简书&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;例如2：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;![](http://upload-images.jianshu.io/upload_images/259-0ad0d0bfc1c608b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最终显示&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/259-0ad0d0bfc1c608b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;注：插入图片的语法和链接的语法很像，只是前面多了一个 ！&lt;/p&gt;
+&lt;h3 id=&quot;引用&quot;&gt;引用&lt;/h3&gt;
+&lt;p&gt;在我们写作的时候经常需要引用他人的文字，这个时候引用这个格式就很有必要了，在 Markdown 中，你只需要在你希望引用的文字前面加上 &amp;gt; 就好了。
+例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; &amp;gt;一盏灯， 一片昏黄； 一简书， 一杯淡茶。 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最终显示：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;一盏灯， 一片昏黄； 一简书， 一杯淡茶。 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;粗体和斜体&quot;&gt;粗体和斜体&lt;/h3&gt;
+&lt;p&gt;Markdown 的粗体和斜体也非常简单，用两个 * 包含一段文本就是粗体的语法，用一个 * 包含一段文本就是斜体的语法。例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;*一盏灯*， 一片昏黄；**一简书**， 一杯淡茶。 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最终显示：
+&lt;em&gt;一盏灯&lt;/em&gt;， 一片昏黄；&lt;strong&gt;一简书&lt;/strong&gt;， 一杯淡茶。 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。&lt;/p&gt;
+
+&lt;h3 id=&quot;代码引用&quot;&gt;代码引用&lt;/h3&gt;
+&lt;p&gt;需要引用代码时，如果引用的语句只有一段，不分行，可以用`将语句包起来。
+如果引用的语句为多行，可以将```置于这段代码的首行和末行。
+代码引用的案例截图：&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;*一盏灯*， 一片昏黄；**一简书**， 一杯淡茶。守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;*一盏灯*， 一片昏黄；**一简书**， 一杯淡茶。
+守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;表格&quot;&gt;表格&lt;/h3&gt;
+&lt;p&gt;相关代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Tables&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Are&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;Cool&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;col 3 is&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;right-aligned&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;$1600&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;col 2 is&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;centered&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;$12&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;zebra stripes&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;are neat&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;$1&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;显示链接中带括号的图片&quot;&gt;显示链接中带括号的图片&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;![] [1]
+
+[1]: http://latex.codecogs.com/gif.latex?\prod%20\(n_{i}\)+1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最终显示&lt;/p&gt;
+
+&lt;p&gt;![] [1]
+[1]: http://latex.codecogs.com/gif.latex?\prod%20(n_{i})+1&lt;/p&gt;
+
+&lt;p&gt;注：注意换行&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>企业会计准则第16号 政府补助   副本</title>
+   <link href="http://www.yangzhihao.com/posts/%E4%BC%81%E4%B8%9A%E4%BC%9A%E8%AE%A1%E5%87%86%E5%88%99%E7%AC%AC16%E5%8F%B7-%E6%94%BF%E5%BA%9C%E8%A1%A5%E5%8A%A9-%E5%89%AF%E6%9C%AC.html"/>
+   <updated>2017-11-12T00:00:00+08:00</updated>
+   <id>/posts/企业会计准则第16号-政府补助 - 副本</id>
+   <content type="html">&lt;p&gt;–
+layout: post
+category: “finance&amp;amp;accounting”
+title:  “企业会计准则第16号——政府补助”
+tags: [企业会计准则]
+—
+企业会计准则第16号——政府补助&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h3 id=&quot;企业会计准则第16号政府补助&quot;&gt;企业会计准则第16号——政府补助&lt;/h3&gt;
+&lt;p&gt;作者：财政部来源：发表于：2017-05-25
+企业会计准则第16号——政府补助
+** 第一章**  总则
+** 第一条**  为了规范政府补助的确认、计量和相关信息的披露，根据《企业会计准则——基本准则》，制定本准则。
+** 第二条**  政府补助，是指企业从政府无偿取得货币性资产或非货币性资产，但不包括政府作为企业所有者投入的资本。
+**  第三条**  政府补助具有下列特征：【增】
+（一）来源于政府的经济资源。对于企业收到的来源于其他方的补助，有确凿证据表明政府是补助的实际拨付者，其他方只起到代收代付作用的，该项补助也属于来源于政府的经济资源。
+（二）无偿性。即企业取得来源于政府的经济资源，不需要向政府交付商品或服务等对价。
+** 第四条**  政府补助分为与资产相关的政府补助和与收益相关的政府补助。
+与资产相关的政府补助，是指企业取得的、用于购建或以其他方式形成长期资产的政府补助。
+与收益相关的政府补助，是指除与资产相关的政府补助之外的政府补助。
+** 第四条**  下列各项适用其他相关会计准则：【改】
+（一）  企业从政府取得的经济资源，如果与企业销售商品或
+提供服务等活动密切相关，且是企业商品或服务的对价或者是对价的组成部分，适用《企业会计准则** 第14号——收入》等相关会计准则。
+（二）所得税减免，适用《企业会计准则** 第 18 号——所得税》。
+政府以投资者身份向企业投入资本，享有相应的所有者权益，不适用本准则。
+** 第二章**  确认和计量
+** 第六条**  政府补助同时满足下列条&lt;strong&gt;件的，才能予以确认：
+（一）企业能够满足政府补助所附条&lt;/strong&gt;件；
+（二）企业能够收到政府补助。
+**  第七条**  政府补助为货币性资产的，应当按照收到或应收的金额计量。
+政府补助为非货币性资产的，应当按照公允价值计量；公允价值不能可靠取得的，按照名义金额计量。
+** 第八条**  与资产相关的政府补助，应当冲减相关资产的账面价值或确认为递延收益。与资产相关的政府补助确认为递延收益的，应当在相关资产使用寿命内按照合理、系统的方法分期计入损益。按照名义金额计量的政府补助，直接计入当期益。相关资产在使用寿命结束前被出售、转让、报废或发生毁损的，应当将尚未分配的相关递延收益余额转入资产处置当期的损益。
+** 第九条**  与收益相关的政府补助，应当分情况按照以下规定进行会计处理：
+（一）用于补偿企业以后期间的相关成本费用或损失的，确认为递延收益，并在确认相关成本费用或损失的期间，计入当期损益或冲减相关成本；
+（二）用于补偿企业已发生的相关成本费用或损失的，直接计入当期损益或冲减相关成本。
+** 第十条**
+对 于同时包含与资产相关部分和与收益相关部分的政府补助，应当区分不同部分分别进行会计处理；难以区分的，应当整体归类为与收益相关的政府补助。
+** 第十一条**
+与企业日常活动相关的政府补助，应当按照经济业务实质，计入其他收益或冲减相关成本费用。与企业日常活动无关的政府补助，应当计入营业外收支。
+** 第十二条**
+企业取得政策性优惠贷款贴息的，应当区分财政将贴息资金拨付给贷款银行和财政将贴息资金直接拨付给企业
+两种情况，分别按照本准则** 第十三条&lt;strong&gt;和&lt;/strong&gt; 第十四条&lt;strong&gt;进行会计处理。
+** 第十三条&lt;/strong&gt;
+财政将贴息资金拨付给贷款银行，由贷款银行以政策性优惠利率向企业提供贷款的，企业可以选择下列方法之一
+进行会计处理：
+（一）以实际收到的借款金额作为借款的入账价值，按照借款本金和该政策性优惠利率计算相关借款费用。
+（二）以借款的公允价值作为借款的入账价值并按照实际利率法计算借款费用，实际收到的金额与借款公允价值之间的差额确认为递延收益。递延收益在借款存续期内采用实际利率法摊销，冲减相关借款费用。企业选择了上述两种方法之一后，应当一致地运用，不得随意变更。
+** 第十四条**
+财政将贴息资金直接拨付给企业，企业应当将对应的贴息冲减相关借款费用。
+** 第十五条**
+已确认的政府补助需要退回的，应当在需要退回的当期分情况按照以下规定进行会计处理：
+（一）初始确认时冲减相关资产账面价值的，调整资产账面价值；
+（二）存在相关递延收益的，冲减相关递延收益账面余额，超出部分计入当期损益；
+（三）属于其他情况的，直接计入当期损益。
+** 第三章**  列报
+** 第十六条**
+企业应当在利润表中的“营业利润”项目之上单独列报“其他收益”项目，计入其他收益的政府补助在该项目中反映。
+** 第十七条**
+企业应当在附注中单独披露与政府补助有关的下列信息：
+（一）政府补助的种类、金额和列报项目；
+（二）计入当期损益的政府补助金额；
+（三）本期退回的政府补助金额及原因。
+** 第四章**  衔接规定
+** 第十八条**  企业对2017年1月1日存在的政府补助采用未来适用法处理，对2017年1月1日至本准则施行日之间新增的政府补助根据本准则进行调整。
+** 第五章**  附则
+** 第十九条**  本准则自2017年6月12日起施行。
+** 第二十条&lt;strong&gt;2006年2月15日财政部印发的《财政部关于印发〈企业会计准则&lt;/strong&gt; 第1号——存货〉等38项具体准则的通知》（财会〔2006〕3号）中的《企业会计准则** 第16号——政府补助》同时废止。
+财政部此前发布的有关政府补助会计处理规定与本准则不一致的，以本准则为准。&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>人生什么更重要？[测试]</title>
+   <link href="http://www.yangzhihao.com/posts/which-more-important.html"/>
+   <updated>2010-01-01T00:00:00+08:00</updated>
+   <id>/posts/which-more-important</id>
+   <content type="html">&lt;h3 id=&quot;哪个更重要&quot;&gt;哪个更重要？&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;方向比努力重要，&lt;br /&gt;
+身体比金钱重要，&lt;br /&gt;
+生活比文凭重要，&lt;br /&gt;
+情商比智商重要，&lt;br /&gt;
+能力比知识重要，&lt;br /&gt;
+行动比（愿望）空想重要。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;一生最重要的7项资产&quot;&gt;一生最重要的7项资产&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;1，健康：人类的第一资产，  
+2，财富：资产的最重要诠释，  
+3，智慧：改变命运的资本，  
+4，婚姻与家庭：身心的避风港，  
+5，心灵：深查世界的棱镜，  
+6，友谊：一生快乐源泉，  
+7，人生的意义：成长的源动力。  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;人生四句话&quot;&gt;人生四句话&lt;/h3&gt;
+
+&lt;p&gt;把自己当成别人（痛苦），&lt;br /&gt;
+把别人当成自己（同情），&lt;br /&gt;
+把别人当成别人（尊重），&lt;br /&gt;
+把自己当成自己（走自己的路）。&lt;/p&gt;
+</content>
+ </entry>
+ 
+ 
+</feed>

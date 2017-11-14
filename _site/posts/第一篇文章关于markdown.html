@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="markdown简单用法 - 杨志浩个人博客 - 作者:杨志浩"/> 
+	<meta name="keywords" content="阅读,人生"/>
+    <title>markdown简单用法 - 杨志浩个人博客</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Custom CSS -->
+    <link href="/css/blog.css" rel="stylesheet"/>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
+    queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://
+    -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+      </script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+      </script>
+    <![endif]-->
+        <!-- jQuery Version 1.11.0 -->
+    <script src="/js/jquery-1.11.0.js"> </script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+  </head>
+  
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">
+              Toggle navigation
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+          </button>
+          <a class="navbar-brand" href="/">
+            首页
+          </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          		<ul class="nav navbar-nav">
+			
+				<li>
+				  <a href="/posts/finance.html">
+					金融财务
+				  </a>
+				</li>
+			
+				<li>
+				  <a href="/posts/program.html">
+					Python
+				  </a>
+				</li>
+			
+				<li>
+				  <a href="/posts/web.html">
+					Web建站
+				  </a>
+				</li>
+			
+				<li>
+				  <a href="/posts/dataMart.html">
+					数据仓库
+				  </a>
+				</li>
+			
+				<li>
+				  <a href="/posts/linux.html">
+					Linux相关
+				  </a>
+				</li>
+			
+				<li>
+				  <a href="/posts/read.html">
+					读书笔记
+				  </a>
+				</li>
+			
+				<li>
+				  <a href="/posts/other.html">
+					杂记
+				  </a>
+				</li>
+			
+				<li>
+				  <a href="/about.html">
+					关于
+				  </a>
+				</li>
+			
+		</ul>  
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+          <!-- Navi -->
+<a href="/">首页</a>&nbsp;>&nbsp;<a href="/posts/read.html">读书笔记</a>&nbsp;>&nbsp;正文
+<!-- Title -->
+<h2>markdown简单用法</h2>
+<b>标签：</b><a href="/tags.html#阅读"><i>阅读</i></a>, <a href="/tags.html#人生"><i>人生</i></a>
+<div class="post-date">
+	<span class="glyphicon glyphicon-time"></span>
+	2017-11-13
+</div>
+<br/>
+
+<!-- content -->
+<div style="text-indent:2em;">
+<p>Markdown是一款标记语言，能够减轻在排版上的工作量。</p>
+
+<!-- more -->
+
+<h3 id="标题1">标题1</h3>
+<p>这是最为常用的格式，在平时常用的的文本编辑器中大多是这样实现的：输入文本、选中文本、设置标题格式。</p>
+
+<p>而在 Markdown 中，你只需要在文本前面加上 # 即可，同理、你还可以增加二级标题、三级标题、四级标题、五级标题和六级标题，总共六级，只需要增加 # 即可，标题字号相应降低。例如：</p>
+<blockquote>
+  <h1 id="一级标题">一级标题</h1>
+  <h2 id="二级标题">二级标题</h2>
+  <h3 id="三级标题">三级标题</h3>
+  <h4 id="四级标题">四级标题</h4>
+  <h5 id="五级标题">五级标题</h5>
+  <h6 id="六级标题">六级标题</h6>
+</blockquote>
+
+<h3 id="列表">列表</h3>
+<p>列表格式也很常用，在 Markdown 中，你只需要在文字前面加上 - 就可以了，例如：</p>
+
+<p><strong>项目符号：</strong></p>
+
+<pre><code>- 文本1
+- 文本2
+- 文本3
+</code></pre>
+
+<p>预览：</p>
+<ul>
+  <li>文本1</li>
+  <li>文本2</li>
+  <li>文本3</li>
+</ul>
+
+<p><strong>编号：</strong></p>
+<pre><code> 1. 文本1
+ 2. 文本2
+ 3. 文本3
+</code></pre>
+<p>预览：</p>
+<ol>
+  <li>文本1</li>
+  <li>文本2</li>
+  <li>文本3</li>
+</ol>
+
+<p>注：-、1.和文本之间要保留一个字符的空格。</p>
+<h3 id="链接和图片">链接和图片</h3>
+<p>在 Markdown 中，插入链接不需要其他按钮，你只需要使用 <a href="链接地址">显示文本</a> 这样的语法即可。
+例如1：</p>
+
+<p><code>  [简书](http:www.jianshu.com) </code></p>
+
+<p>最终显示：</p>
+
+<p><a href="http:www.jianshu.com">简书</a></p>
+
+<p>例如2：</p>
+<pre><code>![](http://upload-images.jianshu.io/upload_images/259-0ad0d0bfc1c608b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+</code></pre>
+<p>最终显示</p>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/259-0ad0d0bfc1c608b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+
+<p>注：插入图片的语法和链接的语法很像，只是前面多了一个 ！</p>
+<h3 id="引用">引用</h3>
+<p>在我们写作的时候经常需要引用他人的文字，这个时候引用这个格式就很有必要了，在 Markdown 中，你只需要在你希望引用的文字前面加上 &gt; 就好了。
+例如：</p>
+<pre><code> &gt;一盏灯， 一片昏黄； 一简书， 一杯淡茶。 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。
+</code></pre>
+<p>最终显示：</p>
+<blockquote>
+  <p>一盏灯， 一片昏黄； 一简书， 一杯淡茶。 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。</p>
+</blockquote>
+
+<h3 id="粗体和斜体">粗体和斜体</h3>
+<p>Markdown 的粗体和斜体也非常简单，用两个 * 包含一段文本就是粗体的语法，用一个 * 包含一段文本就是斜体的语法。例如：</p>
+<pre><code>*一盏灯*， 一片昏黄；**一简书**， 一杯淡茶。 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。
+</code></pre>
+<p>最终显示：
+<em>一盏灯</em>， 一片昏黄；<strong>一简书</strong>， 一杯淡茶。 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。</p>
+
+<h3 id="代码引用">代码引用</h3>
+<p>需要引用代码时，如果引用的语句只有一段，不分行，可以用`将语句包起来。
+如果引用的语句为多行，可以将```置于这段代码的首行和末行。
+代码引用的案例截图：</p>
+
+<p><code>*一盏灯*， 一片昏黄；**一简书**， 一杯淡茶。守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。</code></p>
+<pre><code>*一盏灯*， 一片昏黄；**一简书**， 一杯淡茶。
+守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。
+</code></pre>
+<h3 id="表格">表格</h3>
+<p>相关代码：</p>
+<pre><code>| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tables</th>
+      <th style="text-align: center">Are</th>
+      <th style="text-align: right">Cool</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>col 3 is</td>
+      <td style="text-align: center">right-aligned</td>
+      <td style="text-align: right">$1600</td>
+    </tr>
+    <tr>
+      <td>col 2 is</td>
+      <td style="text-align: center">centered</td>
+      <td style="text-align: right">$12</td>
+    </tr>
+    <tr>
+      <td>zebra stripes</td>
+      <td style="text-align: center">are neat</td>
+      <td style="text-align: right">$1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="显示链接中带括号的图片">显示链接中带括号的图片</h3>
+
+<pre><code>![] [1]
+
+[1]: http://latex.codecogs.com/gif.latex?\prod%20\(n_{i}\)+1
+</code></pre>
+<p>最终显示</p>
+
+<p>![] [1]
+[1]: http://latex.codecogs.com/gif.latex?\prod%20(n_{i})+1</p>
+
+<p>注：注意换行</p>
+
+</div>
+
+<br/>
+<b>原创文章，转载请注明出处！</b>
+<br/>
+<b>本文链接：</b><a href="http://localhost:4000/posts/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%85%B3%E4%BA%8Emarkdown.html" title="">http://localhost:4000/posts/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%85%B3%E4%BA%8Emarkdown.html</a>
+
+<!-- next and previous -->
+<div style="margin-top:15px; margin-bottom:10px">
+  
+  <span class="next">
+    上篇：
+    <a href="/posts/%E4%BC%81%E4%B8%9A%E4%BC%9A%E8%AE%A1%E5%87%86%E5%88%99%E7%AC%AC16%E5%8F%B7-%E6%94%BF%E5%BA%9C%E8%A1%A5%E5%8A%A9-%E5%89%AF%E6%9C%AC.html">
+      企业会计准则第16号 政府补助   副本
+    </a>
+  </span>
+   
+  
+  <div style="float:right">
+  <span class="prev" >
+    下篇：
+    <a href="/posts/jekyll%E6%96%87%E7%A8%BF%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98.html">
+      关于个人博客网站-Jekyll应用
+    </a>
+  </span>
+  </div>
+  
+</div>
+<hr>
+<!-- Blog Comments -->
+<div class="media">
+  请修改_includes/comment.html添加评论代码。 
+</div>
+        </div>
+        <!-- Blog Sidebar Widgets Column -->
+        <div class="col-md-4">
+          <!-- Blog Categories Well -->
+          <div class="well">
+            <h4>
+              栏目分类
+            </h4>
+            <div class="row">
+                            <div class="col-lg-6">
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="/posts/finance.html">
+                      金融财务
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/posts/python.html">
+                      Python
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/posts/web.html">
+                      Web建站
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/posts/datamart.html">
+                      数据仓库
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/posts/read.html">
+                      读书笔记
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/archives.html">
+                      存档
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.col-lg-6 -->
+              <div class="col-lg-6">
+                <ul class="list-unstyled">                                  
+				          <li>
+                    <a href="/posts/linux.html">
+                      Linux相关
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/posts/other.html">
+                      杂记
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/tags.html">
+                      Tags
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.col-lg-6 -->
+ 
+            </div>
+            <!-- /.row -->
+          </div>
+		  <!-- Blog Recent Well -->
+          <div class="well">
+            <h4>
+              最新文章
+            </h4>
+			<div class="row">
+                            <div class="col-lg-12">
+                <ul class="list-unstyled">
+				
+                  <li>
+                    <a href="/posts/%E5%85%B3%E4%BA%8E%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99-Jekyll%E5%BA%94%E7%94%A8.html">
+                      关于个人博客网站-Jekyll应用
+                    </a>
+                  </li>
+				
+                  <li>
+                    <a href="/posts/%E4%BC%81%E4%B8%9A%E4%BC%9A%E8%AE%A1%E5%87%86%E5%88%99%E7%AC%AC16%E5%8F%B7-%E6%94%BF%E5%BA%9C%E8%A1%A5%E5%8A%A9.html">
+                      企业会计准则第16号——政府补助2017
+                    </a>
+                  </li>
+				
+                  <li>
+                    <a href="/posts/jekyll%E6%96%87%E7%A8%BF%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98.html">
+                      关于个人博客网站-Jekyll应用
+                    </a>
+                  </li>
+				
+                  <li>
+                    <a href="/posts/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%85%B3%E4%BA%8Emarkdown.html">
+                      markdown简单用法
+                    </a>
+                  </li>
+				
+                  <li>
+                    <a href="/posts/%E4%BC%81%E4%B8%9A%E4%BC%9A%E8%AE%A1%E5%87%86%E5%88%99%E7%AC%AC16%E5%8F%B7-%E6%94%BF%E5%BA%9C%E8%A1%A5%E5%8A%A9-%E5%89%AF%E6%9C%AC.html">
+                      企业会计准则第16号 政府补助   副本
+                    </a>
+                  </li>
+				
+                  <li>
+                    <a href="/posts/which-more-important.html">
+                      人生什么更重要？[测试]
+                    </a>
+                  </li>
+				  
+                </ul>
+              </div> 
+			</div>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+
+      <!-- Footer -->
+      <footer>
+        <div class="row">
+          <div class="col-lg-12">
+                        <div style="text-align:center;margin-top:15px;">
+				Copyright &copy; www.yangzhihao.com, generated by Jekyll, designed by <a href="https://www.panxw.com">panxw</a>. <a href="https://github.com/panxw/panxw.github.com">[source]</a>
+				<br/>
+				请修改_includes/copyright.html添加统计代码。
+            </div>
+ 
+          </div>
+          <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+      </footer>
+    </div>
+    <!-- /.container -->
+  </body>
+
+</html>

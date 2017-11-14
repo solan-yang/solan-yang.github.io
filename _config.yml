@@ -1,0 +1,31 @@
+markdown: kramdown
+highlighter: pygments
+permalink: /posts/:title.html
+excerpt_separator: "<!-- more -->"
+
+github: panxw
+author: "杨志浩"
+email: goddot@126.com
+name: "杨志浩个人博客"
+url: http://127.0.0.1:4000
+domain: www.yangzhihao.com
+all_categories: [
+["finance&accounting", "金融财务","/posts/finance.html"], 
+["python", "Python","/posts/program.html"],
+["web", "Web建站","/posts/web.html"], 
+["datamart", "数据仓库","/posts/dataMart.html"],
+["linux", "Linux相关","/posts/linux.html"],
+["read", "读书笔记","/posts/read.html"], 
+["other", "杂记","/posts/other.html"],
+["about", "关于","/about.html"]
+]
+plugins: [jekyll-paginate]
+paginate: 8
+paginate_path: "posts/page:num"
+#timezone: America/Los_Angeles
+
+collections:
+  docs:
+    output: true
+
+
