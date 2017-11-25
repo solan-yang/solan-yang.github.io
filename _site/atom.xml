@@ -4,12 +4,189 @@
  <title></title>
  <link href="http://www.yangzhihao.com/atom.xml" rel="self"/>
  <link href="http://www.yangzhihao.com"/>
- <updated>2017-11-15T00:06:21+08:00</updated>
+ <updated>2017-11-25T14:10:24+08:00</updated>
  <author>
    <name>杨志浩</name>
    <email>goddot@126.com</email>
  </author>
 
+ 
+ <entry>
+   <title>个人简历</title>
+   <link href="http://www.yangzhihao.com/posts/%E6%9D%A8%E5%BF%97%E6%B5%A9%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86.md.html"/>
+   <updated>2017-11-25T00:00:00+08:00</updated>
+   <id>/posts/杨志浩个人简历.md</id>
+   <content type="html">## 杨志浩个人简历  
+
+&lt;!-- more --&gt;
+
+### 个人信息  
+---
+- **籍贯：**湖北  
+- **地址 ：**北京市      
+- **邮箱：**353735515@qq.com  
+- **联系电话：**15972938790 
+- **博客：**[http：//yangzhihao.github.com/](http:www.yangzhihao.github.com/)
+
+
+### 自我评价  
+---
+参与银行、国网不同项目类型的数据仓库项目的建设；    
+曾独立负责BI项目售前工作，并有相应成功案例；    
+熟悉了解BI/ERP系统实施方案论，并在用友公司担任实施顾问、售前顾问和项目经理；    
+熟悉财务、资金、预算等财务业务模块，能够承担相关业务领域的调研及设计工作；    
+熟悉oracle，teradata，熟悉SQL、存储过程等；    
+熟悉Python，了解flask，numpy，pandas等模块；    
+### 工作经历 
+---
+**2015.12~至今用友能源科技有限公司 国网事业部 实施顾问/售前顾问&amp;项目经理**  
+**工作描述：**1、负责用友-NC系统(SG-NC) 福建地区财务实施工作，负责财务预算的需求调研工作、方案设计、系统配置、项目切换上线等项目全生命周期工作；  
+**工作收获：**熟悉用友ERP实施方法论，了解总账、预算、报销、资金等财务业务，熟悉用友UAP开发平台，熟悉用友NC财务模型，对用友财务、物资、工程项目业务有一定了解；  
+**工作描述：**2、负责新疆区域BI项目售前工作，负责与客户领导沟通项目需求、制定项目业务方案和技术方案，完成项目立项、招投标、项目合同签订等工作；  
+**工作收获：**熟悉用友BI售前实施方法论，熟悉Kimball维度建模理论，熟悉业务指标体系方法，熟悉数据仓库建模及ETL调度常用需求，熟悉用友BQ开发平台（BI前端工具及ETL工具），熟悉ORACLE的SQL、存储过程等数据库开发。    
+**2014.4~2015.11  软通动力信息技术（集团）有限公司  Bank金融BI实施开发部  数据库开发工程师**  
+**工作描述：**负责银行BI项目实施运维工作，完成业务需求的详细设计，完成脚本的开发测试工作，并保证通过系统评审和上线。  
+**工作收获：**熟悉Teradata-EDW数据仓库模型，熟悉信用卡业务及光大信用卡数据集市方案，熟悉BI项目数据开发流程，熟悉Teradata-SQL，Oracle，了解MPP架构和Perl，了解BIEE和Essbase。    
+**2013.9~2014.4   北京恒华伟业科技股份有限公司     智能监控事业部         数据库工程师**  
+**工作描述：**负责国网BI项目数据组实施工作，完成复杂业务逻辑的存储过程开发工作和使用ＥＴＬ调度工具完成数据仓库的作业调度。  
+**工作收获：**了解国网电网运营监测（控）中心顶层设计成果，熟悉国网数据仓库指标建模方法，熟悉财务、人资、物资等业务指标；  熟悉ETL关于oracle存储过程的开发；  熟悉Informatica工具。  。  
+### 项目经历                                                                                                  
+---                            
+**2017-4~至今 国家电网新疆新能集团运营监控售前项目**   
+**所属公司：**	用友能源科技有限公司   **岗位：**售前顾问  **汇报对象：**实施总监&amp;销售经理  
+**项目描述：**	
+新疆新能集团是国网电网隶属集体企业中重点企业，基于借鉴国网多年运监项目的成果和实现集团公司经营分析的需求，提出运营监控平台的建设。  项目总合同480万，包括硬软件、实施开发、三方测试等内容。  运营监控平台的产品平台基于用友BQ产品，数据源主要为用友NC产品，涉及财务、人资、物资、项目等。  数据仓库建模方案解决借鉴国网电网运监项目指标建模方法。  
+**责任描述：**	
+负责项目整体售前工作开展，完成项目的中标及合同签订。  
+1、负责调研评估客户需求，完成项目可研方案，并提出项目建议书。  
+2、负责项目业务方案和技术方案制定，包括指标体系的设计、数据仓库的设计，系统部署方案的制定等。  
+3、负责项目硬软件、实施开发等成本概算，制定项目总体实施计划。  
+4、负责项目招投标工作，项目流程审批等工作，包括项目技术规范书、项目技术标书、项目技术协议等编写审核。  
+**2014.4~2015.1    国网电网集体企业SG-NC应用平台福建二期项目**                           
+**所属公司：**	用友能源科技有限公司  **岗位：** 实施顾问  **汇报对象：**项目经理  
+**项目描述：**	
+SG-NC系统是国网电网公司针对所属集体企业应用建设的ERP系统，包括财务、人资、物资、合同、项目、公开招标等多个应用模块，产品原型采用用友UAP-NC产品。  用友公司作为产品厂商，主导项目需求、设计、开发、测试等工作。  福建二期项目是全国二期试点工程，主要有财务、物资、项目等模块。    
+**责任描述：**  
+1、负责福建财务预算整体实施工作工作，完项目交付；  
+2、负责福建试点单位的财务-预算需求调研、差异分析、方案设计、用户培训、系统配置工作、项目切换上线等工作计划执行；  
+3、负责财务-预算实施过程中问题发现、问题处理、问题汇报等工作；  
+4、负责协助项目组实施顾问完成产品部署、产品测试等培训工作；  
+**2014-4~2015-11       光大银行信用卡分析系统项目**                         
+**所属公司：**	软通动力信息技术（集团）有限公司   **岗位：**ETL数据开发工程师  **汇报对象：**项目经理   
+**项目描述：**   
+光大银行信用卡分析系统项目是光大数据仓库EDW平台下面向信用卡主题的数据集市项目，项目主要工作是为对信用卡数据集市进行维护开发，同时基于数据集市平台进行报表分析以及 3S分析供数平台的动态数据查询。  光大数据仓库采用Teradata的FSLDM逻辑模型，信用卡数据集市根据多个实体主题进行主题划分，指标设计。  
+**责任描述：**	 
+负责数据集市的数据库开发（ETL）工作  
+1、负责分析光大信用卡中心的数据需求，编写Unix环境中Perl脚本中的逻辑处理部分，实现数据集市的维护开发工作。  
+2、负责通过SQL\*LOADER工具维护数据集市平台与报表平台的数据传输工作；  
+3、负责编写SQL逻辑，维护3S分析供数平台实现动态数据查询；  
+4、负责项目组日常考勤工作，工时审核；  
+
+**2013-7~2014-4         国家电网鲁能集团运营监控项目一期**   
+**所属公司：**	北京恒华伟业科技股份有限公司   **岗位：**ETL数据开发工程师  **汇报对象：**项目经理  
+**项目描述：**    	
+鲁能集团是国网电网直属单位。  鲁能运营监控项目是按照国网公司运营监控中心总体建设计划，参考顶层设计，采集各业务系统数据（包括ERP各模块：财务，物资，人资，客服，成本等)，搭建运监平台。  在数据仓库设计中，复杂的业务逻辑由oracle存储过程实现。  Informatica工具承担ETL调度以及数据流程聚合、过滤、简单的维度缓慢变化等ETL需求。  在数据展现方便，使用工作台和大屏等方式实现。  
+**责任描述：**    	
+负责项目数据组多个模块ETL工作  
+1、参与oracle存储过程开发工作  
+2、负责物资，人资模块各指标核对确认工作  
+3、负责物资，人资模块数据调度以及建设数据转换操作   
+### 教育经历
+---
+武汉工程大学 2009-2013 本科 统招  信息管理和信息系统
+
+
+          
+</content>
+ </entry>
+ 
+ <entry>
+   <title>个人简历</title>
+   <link href="http://www.yangzhihao.com/posts/%E6%9D%A8%E5%BF%97%E6%B5%A9%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86.html"/>
+   <updated>2017-11-25T00:00:00+08:00</updated>
+   <id>/posts/杨志浩个人简历</id>
+   <content type="html">&lt;h2 id=&quot;杨志浩个人简历&quot;&gt;杨志浩个人简历&lt;/h2&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h3 id=&quot;个人信息&quot;&gt;个人信息&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;籍贯：&lt;/strong&gt;湖北&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;地址 ：&lt;/strong&gt;北京市&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;邮箱：&lt;/strong&gt;353735515@qq.com&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;联系电话：&lt;/strong&gt;15972938790&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;博客：&lt;/strong&gt;&lt;a href=&quot;http:www.yangzhihao.github.com&quot;&gt;http：//yangzhihao.github.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;自我评价&quot;&gt;自我评价&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;p&gt;参与银行、国网不同项目类型的数据仓库项目的建设；  &lt;br /&gt;
+曾独立负责BI项目售前工作，并有相应成功案例；  &lt;br /&gt;
+熟悉了解BI/ERP系统实施方案论，并在用友公司担任实施顾问、售前顾问和项目经理；  &lt;br /&gt;
+熟悉财务、资金、预算等财务业务模块，能够承担相关业务领域的调研及设计工作；  &lt;br /&gt;
+熟悉oracle，teradata，熟悉SQL、存储过程等；  &lt;br /&gt;
+熟悉Python，了解flask，numpy，pandas等模块；&lt;/p&gt;
+&lt;h3 id=&quot;工作经历&quot;&gt;工作经历&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;2015.12~至今用友能源科技有限公司 国网事业部 实施顾问/售前顾问&amp;amp;项目经理&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;工作描述：&lt;/strong&gt;1、负责用友-NC系统(SG-NC) 福建地区财务实施工作，负责财务预算的需求调研工作、方案设计、系统配置、项目切换上线等项目全生命周期工作；&lt;br /&gt;
+&lt;strong&gt;工作收获：&lt;/strong&gt;熟悉用友ERP实施方法论，了解总账、预算、报销、资金等财务业务，熟悉用友UAP开发平台，熟悉用友NC财务模型，对用友财务、物资、工程项目业务有一定了解；&lt;br /&gt;
+&lt;strong&gt;工作描述：&lt;/strong&gt;2、负责新疆区域BI项目售前工作，负责与客户领导沟通项目需求、制定项目业务方案和技术方案，完成项目立项、招投标、项目合同签订等工作；&lt;br /&gt;
+&lt;strong&gt;工作收获：&lt;/strong&gt;熟悉用友BI售前实施方法论，熟悉Kimball维度建模理论，熟悉业务指标体系方法，熟悉数据仓库建模及ETL调度常用需求，熟悉用友BQ开发平台（BI前端工具及ETL工具），熟悉ORACLE的SQL、存储过程等数据库开发。  &lt;br /&gt;
+&lt;strong&gt;2014.4~2015.11  软通动力信息技术（集团）有限公司  Bank金融BI实施开发部  数据库开发工程师&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;工作描述：&lt;/strong&gt;负责银行BI项目实施运维工作，完成业务需求的详细设计，完成脚本的开发测试工作，并保证通过系统评审和上线。&lt;br /&gt;
+&lt;strong&gt;工作收获：&lt;/strong&gt;熟悉Teradata-EDW数据仓库模型，熟悉信用卡业务及光大信用卡数据集市方案，熟悉BI项目数据开发流程，熟悉Teradata-SQL，Oracle，了解MPP架构和Perl，了解BIEE和Essbase。  &lt;br /&gt;
+&lt;strong&gt;2013.9~2014.4   北京恒华伟业科技股份有限公司     智能监控事业部         数据库工程师&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;工作描述：&lt;/strong&gt;负责国网BI项目数据组实施工作，完成复杂业务逻辑的存储过程开发工作和使用ＥＴＬ调度工具完成数据仓库的作业调度。&lt;br /&gt;
+&lt;strong&gt;工作收获：&lt;/strong&gt;了解国网电网运营监测（控）中心顶层设计成果，熟悉国网数据仓库指标建模方法，熟悉财务、人资、物资等业务指标；  熟悉ETL关于oracle存储过程的开发；  熟悉Informatica工具。  。&lt;/p&gt;
+&lt;h3 id=&quot;项目经历&quot;&gt;项目经历&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;2017-4~至今 国家电网新疆新能集团运营监控售前项目&lt;/strong&gt; &lt;br /&gt;
+&lt;strong&gt;所属公司：&lt;/strong&gt;	用友能源科技有限公司   &lt;strong&gt;岗位：&lt;/strong&gt;售前顾问  &lt;strong&gt;汇报对象：&lt;/strong&gt;实施总监&amp;amp;销售经理&lt;br /&gt;
+&lt;strong&gt;项目描述：&lt;/strong&gt;	
+新疆新能集团是国网电网隶属集体企业中重点企业，基于借鉴国网多年运监项目的成果和实现集团公司经营分析的需求，提出运营监控平台的建设。  项目总合同480万，包括硬软件、实施开发、三方测试等内容。  运营监控平台的产品平台基于用友BQ产品，数据源主要为用友NC产品，涉及财务、人资、物资、项目等。  数据仓库建模方案解决借鉴国网电网运监项目指标建模方法。&lt;br /&gt;
+&lt;strong&gt;责任描述：&lt;/strong&gt;	
+负责项目整体售前工作开展，完成项目的中标及合同签订。&lt;br /&gt;
+1、负责调研评估客户需求，完成项目可研方案，并提出项目建议书。&lt;br /&gt;
+2、负责项目业务方案和技术方案制定，包括指标体系的设计、数据仓库的设计，系统部署方案的制定等。&lt;br /&gt;
+3、负责项目硬软件、实施开发等成本概算，制定项目总体实施计划。&lt;br /&gt;
+4、负责项目招投标工作，项目流程审批等工作，包括项目技术规范书、项目技术标书、项目技术协议等编写审核。&lt;br /&gt;
+&lt;strong&gt;2014.4~2015.1    国网电网集体企业SG-NC应用平台福建二期项目&lt;/strong&gt;                         &lt;br /&gt;
+&lt;strong&gt;所属公司：&lt;/strong&gt;	用友能源科技有限公司  &lt;strong&gt;岗位：&lt;/strong&gt; 实施顾问  &lt;strong&gt;汇报对象：&lt;/strong&gt;项目经理&lt;br /&gt;
+&lt;strong&gt;项目描述：&lt;/strong&gt;	
+SG-NC系统是国网电网公司针对所属集体企业应用建设的ERP系统，包括财务、人资、物资、合同、项目、公开招标等多个应用模块，产品原型采用用友UAP-NC产品。  用友公司作为产品厂商，主导项目需求、设计、开发、测试等工作。  福建二期项目是全国二期试点工程，主要有财务、物资、项目等模块。  &lt;br /&gt;
+&lt;strong&gt;责任描述：&lt;/strong&gt;&lt;br /&gt;
+1、负责福建财务预算整体实施工作工作，完项目交付；&lt;br /&gt;
+2、负责福建试点单位的财务-预算需求调研、差异分析、方案设计、用户培训、系统配置工作、项目切换上线等工作计划执行；&lt;br /&gt;
+3、负责财务-预算实施过程中问题发现、问题处理、问题汇报等工作；&lt;br /&gt;
+4、负责协助项目组实施顾问完成产品部署、产品测试等培训工作；&lt;br /&gt;
+&lt;strong&gt;2014-4~2015-11       光大银行信用卡分析系统项目&lt;/strong&gt;                       &lt;br /&gt;
+&lt;strong&gt;所属公司：&lt;/strong&gt;	软通动力信息技术（集团）有限公司   &lt;strong&gt;岗位：&lt;/strong&gt;ETL数据开发工程师  &lt;strong&gt;汇报对象：&lt;/strong&gt;项目经理 &lt;br /&gt;
+&lt;strong&gt;项目描述：&lt;/strong&gt; &lt;br /&gt;
+光大银行信用卡分析系统项目是光大数据仓库EDW平台下面向信用卡主题的数据集市项目，项目主要工作是为对信用卡数据集市进行维护开发，同时基于数据集市平台进行报表分析以及 3S分析供数平台的动态数据查询。  光大数据仓库采用Teradata的FSLDM逻辑模型，信用卡数据集市根据多个实体主题进行主题划分，指标设计。&lt;br /&gt;
+&lt;strong&gt;责任描述：&lt;/strong&gt;	 
+负责数据集市的数据库开发（ETL）工作&lt;br /&gt;
+1、负责分析光大信用卡中心的数据需求，编写Unix环境中Perl脚本中的逻辑处理部分，实现数据集市的维护开发工作。&lt;br /&gt;
+2、负责通过SQL*LOADER工具维护数据集市平台与报表平台的数据传输工作；&lt;br /&gt;
+3、负责编写SQL逻辑，维护3S分析供数平台实现动态数据查询；&lt;br /&gt;
+4、负责项目组日常考勤工作，工时审核；&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2013-7~2014-4         国家电网鲁能集团运营监控项目一期&lt;/strong&gt; &lt;br /&gt;
+&lt;strong&gt;所属公司：&lt;/strong&gt;	北京恒华伟业科技股份有限公司   &lt;strong&gt;岗位：&lt;/strong&gt;ETL数据开发工程师  &lt;strong&gt;汇报对象：&lt;/strong&gt;项目经理&lt;br /&gt;
+&lt;strong&gt;项目描述：&lt;/strong&gt;    	
+鲁能集团是国网电网直属单位。  鲁能运营监控项目是按照国网公司运营监控中心总体建设计划，参考顶层设计，采集各业务系统数据（包括ERP各模块：财务，物资，人资，客服，成本等)，搭建运监平台。  在数据仓库设计中，复杂的业务逻辑由oracle存储过程实现。  Informatica工具承担ETL调度以及数据流程聚合、过滤、简单的维度缓慢变化等ETL需求。  在数据展现方便，使用工作台和大屏等方式实现。&lt;br /&gt;
+&lt;strong&gt;责任描述：&lt;/strong&gt;    	
+负责项目数据组多个模块ETL工作&lt;br /&gt;
+1、参与oracle存储过程开发工作&lt;br /&gt;
+2、负责物资，人资模块各指标核对确认工作&lt;br /&gt;
+3、负责物资，人资模块数据调度以及建设数据转换操作&lt;/p&gt;
+&lt;h3 id=&quot;教育经历&quot;&gt;教育经历&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;p&gt;武汉工程大学 2009-2013 本科 统招  信息管理和信息系统&lt;/p&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>关于个人博客网站-Jekyll应用</title>
@@ -36,7 +213,7 @@ Jekyll 的核心其实是一个文本转换引擎。它的概念其实就是： 
 
 &lt;h3 id=&quot;jekyll目录结构介绍&quot;&gt;Jekyll目录结构介绍&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;.   
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.   
 
 |--_config.yml&amp;gt;  
 
@@ -68,7 +245,7 @@ Jekyll 的核心其实是一个文本转换引擎。它的概念其实就是： 
 
 |--index.html
 |--other files
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;ul&gt;
   &lt;li&gt;_config.yml：保存配置数据。&lt;/li&gt;
   &lt;li&gt;&lt;/li&gt;
@@ -210,15 +387,15 @@ Jekyll 的核心其实是一个文本转换引擎。它的概念其实就是： 
 
 &lt;p&gt;修改安装目录\Ruby22-x64\lib\ruby\2.2.0\webrick\httpservlet下的filehandler.rb文件，建议先备份。
 一起有两处修改的地方，加号为添加的语句。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;path = req.path_info.dup.force_encoding(Encoding.find(&quot;filesystem&quot;))
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;path = req.path_info.dup.force_encoding(Encoding.find(&quot;filesystem&quot;))
 + path.force_encoding(&quot;UTF-8&quot;) # 加入编码
 if trailing_pathsep?(req.path_info)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;pre&gt;&lt;code&gt;break if base == &quot;/&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;break if base == &quot;/&quot;
 + base.force_encoding(&quot;UTF-8&quot;) #加入編碼
 break unless File.directory?(File.expand_path(res.filename + base))
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;修改完重新jekyll serve即可支持中文文件名。&lt;/p&gt;
 </content>
@@ -251,10 +428,10 @@ break unless File.directory?(File.expand_path(res.filename + base))
 
 &lt;p&gt;&lt;strong&gt;项目符号：&lt;/strong&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;- 文本1
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- 文本1
 - 文本2
 - 文本3
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;预览：&lt;/p&gt;
 &lt;ul&gt;
@@ -264,10 +441,10 @@ break unless File.directory?(File.expand_path(res.filename + base))
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;编号：&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; 1. 文本1
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 1. 文本1
  2. 文本2
  3. 文本3
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;预览：&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;文本1&lt;/li&gt;
@@ -280,15 +457,15 @@ break unless File.directory?(File.expand_path(res.filename + base))
 &lt;p&gt;在 Markdown 中，插入链接不需要其他按钮，你只需要使用 &lt;a href=&quot;链接地址&quot;&gt;显示文本&lt;/a&gt; 这样的语法即可。
 例如1：&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;  [简书](http:www.jianshu.com) &lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;  [简书](http:www.jianshu.com) &lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;最终显示：&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http:www.jianshu.com&quot;&gt;简书&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;例如2：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;![](http://upload-images.jianshu.io/upload_images/259-0ad0d0bfc1c608b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;![](http://upload-images.jianshu.io/upload_images/259-0ad0d0bfc1c608b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;最终显示&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/259-0ad0d0bfc1c608b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
@@ -297,8 +474,8 @@ break unless File.directory?(File.expand_path(res.filename + base))
 &lt;h3 id=&quot;引用&quot;&gt;引用&lt;/h3&gt;
 &lt;p&gt;在我们写作的时候经常需要引用他人的文字，这个时候引用这个格式就很有必要了，在 Markdown 中，你只需要在你希望引用的文字前面加上 &amp;gt; 就好了。
 例如：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; &amp;gt;一盏灯， 一片昏黄； 一简书， 一杯淡茶。 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &amp;gt;一盏灯， 一片昏黄； 一简书， 一杯淡茶。 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;最终显示：&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;一盏灯， 一片昏黄； 一简书， 一杯淡茶。 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。&lt;/p&gt;
@@ -306,8 +483,8 @@ break unless File.directory?(File.expand_path(res.filename + base))
 
 &lt;h3 id=&quot;粗体和斜体&quot;&gt;粗体和斜体&lt;/h3&gt;
 &lt;p&gt;Markdown 的粗体和斜体也非常简单，用两个 * 包含一段文本就是粗体的语法，用一个 * 包含一段文本就是斜体的语法。例如：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;*一盏灯*， 一片昏黄；**一简书**， 一杯淡茶。 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;*一盏灯*， 一片昏黄；**一简书**， 一杯淡茶。 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;最终显示：
 &lt;em&gt;一盏灯&lt;/em&gt;， 一片昏黄；&lt;strong&gt;一简书&lt;/strong&gt;， 一杯淡茶。 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。&lt;/p&gt;
 
@@ -316,18 +493,18 @@ break unless File.directory?(File.expand_path(res.filename + base))
 如果引用的语句为多行，可以将```置于这段代码的首行和末行。
 代码引用的案例截图：&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;*一盏灯*， 一片昏黄；**一简书**， 一杯淡茶。守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;*一盏灯*， 一片昏黄；**一简书**， 一杯淡茶。
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;*一盏灯*， 一片昏黄；**一简书**， 一杯淡茶。守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;*一盏灯*， 一片昏黄；**一简书**， 一杯淡茶。
 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;h3 id=&quot;表格&quot;&gt;表格&lt;/h3&gt;
 &lt;p&gt;相关代码：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;| Tables        | Are           | Cool  |
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;| Tables        | Are           | Cool  |
 | ------------- |:-------------:| -----:|
 | col 3 is      | right-aligned | $1600 |
 | col 2 is      | centered      |   $12 |
 | zebra stripes | are neat      |    $1 |
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -358,10 +535,10 @@ break unless File.directory?(File.expand_path(res.filename + base))
 
 &lt;h3 id=&quot;显示链接中带括号的图片&quot;&gt;显示链接中带括号的图片&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;![] [1]
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;![] [1]
 
 [1]: http://latex.codecogs.com/gif.latex?\prod%20\(n_{i}\)+1
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;最终显示&lt;/p&gt;
 
 &lt;p&gt;![] [1]
@@ -388,14 +565,14 @@ break unless File.directory?(File.expand_path(res.filename + base))
 &lt;/blockquote&gt;
 
 &lt;h3 id=&quot;一生最重要的7项资产&quot;&gt;一生最重要的7项资产&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;1，健康：人类的第一资产，  
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1，健康：人类的第一资产，  
 2，财富：资产的最重要诠释，  
 3，智慧：改变命运的资本，  
 4，婚姻与家庭：身心的避风港，  
 5，心灵：深查世界的棱镜，  
 6，友谊：一生快乐源泉，  
 7，人生的意义：成长的源动力。  
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;人生四句话&quot;&gt;人生四句话&lt;/h3&gt;
 
