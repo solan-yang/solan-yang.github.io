@@ -4,8 +4,9 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="强学力行、顺势而为 - 杨志浩个人博客 - 作者:杨志浩"/>
-    <title>强学力行、顺势而为 - 杨志浩个人博客</title>
+    <meta name="description" content="关于Flask的一个简单的应用及Restful服务 - 杨志浩个人博客 - 作者:杨志浩"/> 
+	<meta name="keywords" content="web,python"/>
+    <title>关于Flask的一个简单的应用及Restful服务 - 杨志浩个人博客</title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom CSS -->
@@ -110,167 +111,160 @@
       <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-          <!-- Loop output paged posts -->
-
-<h2>
-  <a href="/posts/%E5%85%B3%E4%BA%8Ehighcharts%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%A6%81%E6%B1%82%E5%92%8C%E6%88%90%E6%9E%9C.html">
-    关于highcharts的学习要求和学习成果
-  </a> 
-  <div class="post-date">
-	<span class="glyphicon glyphicon-time"></span>
-	2017-11-26
-  </div>
-</h2>
-<hr>
-  <p>highcharts是一个优秀的js插件，用于网页图表的可视化展现。</p>
-
-
-	<p><h3><a href="/posts/%E5%85%B3%E4%BA%8Ehighcharts%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%A6%81%E6%B1%82%E5%92%8C%E6%88%90%E6%9E%9C.html">阅读全文 &raquo;</a></h3></p>
-<hr>
-
-<h2>
-  <a href="/posts/%E6%9D%A8%E5%BF%97%E6%B5%A9%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86.html">
-    个人简历
-  </a> 
-  <div class="post-date">
+          <!-- Navi -->
+<a href="/">首页</a>&nbsp;>&nbsp;<a href="/posts/program.html">Python</a>&nbsp;>&nbsp;正文
+<!-- Title -->
+<h2>关于Flask的一个简单的应用及Restful服务</h2>
+<b>标签：</b><a href="/tags.html#web"><i>web</i></a>, <a href="/tags.html#python"><i>python</i></a>
+<div class="post-date">
 	<span class="glyphicon glyphicon-time"></span>
 	2017-11-25
-  </div>
-</h2>
-<hr>
-  <p>杨志浩个人简历</p>
+</div>
+<br/>
 
+<!-- content -->
+<div>
+<p>最近开始找关于接口服务，刚好自己时常看Python，所以借用Python的Flask框架学习一下。
+<!-- more --></p>
 
-	<p><h3><a href="/posts/%E6%9D%A8%E5%BF%97%E6%B5%A9%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86.html">阅读全文 &raquo;</a></h3></p>
-<hr>
+<h3 id="关于flask的一个简单的应用">关于Flask的一个简单的应用</h3>
 
-<h2>
-  <a href="/posts/%E5%85%B3%E4%BA%8EFlask%E7%9A%84%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%BA%94%E7%94%A8%E5%8F%8ARestful%E6%9C%8D%E5%8A%A1.html">
-    关于Flask的一个简单的应用及Restful服务
-  </a> 
-  <div class="post-date">
-	<span class="glyphicon glyphicon-time"></span>
-	2017-11-25
-  </div>
-</h2>
-<hr>
-  <p>最近开始找关于接口服务，刚好自己时常看Python，所以借用Python的Flask框架学习一下。</p>
+<ol>
+  <li>Python安装和升级<br />
+Linux默认的python版本是2.6.6，为了使用Python2,7,需要进行升级。
+考虑到部分服务依赖原有的Python，对其他服务的影响。不建议删除原有的版本。<br />
+1)首先，下载源码包，命令如下：
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget --no-check-certificate https://www.python.org/ftp/python/2.7.8/Python-2.7.8.tgz
+</code></pre></div>    </div>
+    <p>注：因为下载网址是https开头的，所以要给wget命令加上–no-check-certificate参数。<br />
+2）下载好源码包后，解压：</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tar -zxvf ./Python-2.7.8.tgz
+</code></pre></div>    </div>
+    <p>3)解压出Python-2.7.8这个目录后，我们开始对源码进行编译：</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd Python-2.7.8
+./configure --prefix=/usr/local/python
+make
+make install
+</code></pre></div>    </div>
+    <p>4)编译安装完成后，要替换掉系统自带的Python，但CentOS的yum依赖于Python工作，为了保证yum的正常运行，我们要在替换前，先将自带的Python更名备份，方法如下：</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mv /usr/bin/python /usr/bin/python-2.4.3
+ln -s /usr/local/python/bin/python /usr/bin/python
+</code></pre></div>    </div>
+    <p>5)上面两行命令执行完后，可以分别用“python -V”和“/usr/bin/python-2.4.3-V”来验证部署是否成功，正确的结果应该是2.7.8和2.4.3。
+最后，要修改yum，让其运行指向旧的版本：</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vi /usr/bin/yum    
+</code></pre></div>    </div>
+    <p>6）将第一行中的“#!/usr/bin/python”修改为“#!/usr/bin/python-2.4.3”，保存即可。</p>
+  </li>
+  <li>Python进行安装setuptools软件包
+(1)下载setuptools包
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget http://pypi.python.org/packages/source/s/setuptools/setuptools-2.0.tar.gz
+</code></pre></div>    </div>
+    <p>(2)解压setuptools包</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># tar zxvf setuptools-2.0.tar.gz
+# cd setuptools-2.0
+</code></pre></div>    </div>
+    <p>(3)编译setuptools</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># python setup.py build
+(4)开始执行setuptools安装
+# python setup.py install
+</code></pre></div>    </div>
+    <p>注：可能会出现
+“Compression requires the (missing) zlib module”这个错误。
+是因为缺少 zlib和  zlib-devel
+执行下面命令
+yum install zlib
+yum install zlib-devel
+在源安装文件目录重新编译make</p>
+  </li>
+  <li>pip安装
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tar -xvf pip-1.4.1.tar.gz 
+ cd pip-1.4.1/  
+sudo python setup.py install 
+##pip升级
+python -m pip install -U pip
+</code></pre></div>    </div>
+    <p>注：如果存在链接存在，则 rm -rf  /usr/bin/pip
+yum install openssl -y
+yum install openssl-devel -y</p>
+  </li>
+  <li>虚拟环境安装
+虚拟环境的安装
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install virtualenv
+ln /usr/local/python-2.7.13/bin/virtualenv  /usr/bin/python/virtualenv -- 无法执行
+</code></pre></div>    </div>
+    <p>创建虚拟环境</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/python-2.7.13/bin/virtualenv  (虚拟环境名）
+</code></pre></div>    </div>
+    <p>激活虚拟环境</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source 虚拟环境名/bin/activate
+</code></pre></div>    </div>
+    <p>返回全局环境</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deactivate
+</code></pre></div>    </div>
+  </li>
+  <li>Flask的安装
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install Flask
+</code></pre></div>    </div>
+    <p>注：pip如果版本太低，会出现安装失败。</p>
+  </li>
+  <li>flask简单应用<br />
+hello.py
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from flask import Flask
+app = Flask(__name__)
+@app.route('/')
+def index():
+     return '&lt;h1&gt;Hello World!&lt;/h1&gt;'
+if __name__ == '__main__':
+     app.run(host='0.0.0.0',port=5000)
+</code></pre></div>    </div>
+    <p>注：应用返回Hello World! 0.0.0.0用于局域网访问</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>###测试服务，192.168.255.129为服务器IP
+curl http://192.168.255.129:5000
+</code></pre></div>    </div>
+    <p>显示如下：<br />
+<img src="\img\post_img\1511623399(1).png" alt="" /><br />
+开通端口5000</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -I INPUT 1 -p tcp --dport 5000 -j ACCEPT
+</code></pre></div>    </div>
+  </li>
+</ol>
 
+<h3 id="restfulf服务">Restfulf服务</h3>
 
-	<p><h3><a href="/posts/%E5%85%B3%E4%BA%8EFlask%E7%9A%84%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%BA%94%E7%94%A8%E5%8F%8ARestful%E6%9C%8D%E5%8A%A1.html">阅读全文 &raquo;</a></h3></p>
-<hr>
+</div>
 
-<h2>
-  <a href="/posts/%E5%85%B3%E4%BA%8E%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99-Jekyll%E5%BA%94%E7%94%A8.html">
-    关于个人博客网站-Jekyll应用
-  </a> 
-  <div class="post-date">
-	<span class="glyphicon glyphicon-time"></span>
-	2017-11-14
-  </div>
-</h2>
-<hr>
-  <p>在大学本科毕业的时候，自己对建站有很深的兴趣，希望能够建成一个自己的网站。但是事与愿违，后续的工作的内容与web差异很大，以致于后续网站的建设一直在心里放着。前段时间，自己偶然在上网的时候看到一个github+Jekyll的免费个人博客方案，自己也十分感兴趣。后续也了解下。这两天刚好项目不是很忙，自己按照教程的方案，下载了一系列的模板还是自己建站之旅。
-这篇文章主要是针对Jekyll的应用进行梳理。</p>
+<br/>
+<b>原创文章，转载请注明出处！</b>
+<br/>
+<b>本文链接：</b><a href="http://localhost:4000/posts/%E5%85%B3%E4%BA%8EFlask%E7%9A%84%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%BA%94%E7%94%A8%E5%8F%8ARestful%E6%9C%8D%E5%8A%A1.html" title="">http://localhost:4000/posts/%E5%85%B3%E4%BA%8EFlask%E7%9A%84%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%BA%94%E7%94%A8%E5%8F%8ARestful%E6%9C%8D%E5%8A%A1.html</a>
 
-
-	<p><h3><a href="/posts/%E5%85%B3%E4%BA%8E%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99-Jekyll%E5%BA%94%E7%94%A8.html">阅读全文 &raquo;</a></h3></p>
-<hr>
-
-<h2>
-  <a href="/posts/%E4%BC%81%E4%B8%9A%E4%BC%9A%E8%AE%A1%E5%87%86%E5%88%99%E7%AC%AC16%E5%8F%B7-%E6%94%BF%E5%BA%9C%E8%A1%A5%E5%8A%A9.html">
-    企业会计准则第16号——政府补助2017
-  </a> 
-  <div class="post-date">
-	<span class="glyphicon glyphicon-time"></span>
-	2017-11-14
-  </div>
-</h2>
-<hr>
-  <p>作者：财政部来源：发表于：2017-05-25</p>
-
-
-	<p><h3><a href="/posts/%E4%BC%81%E4%B8%9A%E4%BC%9A%E8%AE%A1%E5%87%86%E5%88%99%E7%AC%AC16%E5%8F%B7-%E6%94%BF%E5%BA%9C%E8%A1%A5%E5%8A%A9.html">阅读全文 &raquo;</a></h3></p>
-<hr>
-
-<h2>
-  <a href="/posts/jekyll%E6%96%87%E7%A8%BF%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98.html">
-    Jekyll-问题汇总
-  </a> 
-  <div class="post-date">
-	<span class="glyphicon glyphicon-time"></span>
-	2017-11-14
-  </div>
-</h2>
-<hr>
-  <p>今天在写博的时候，发现新建一个md文件，jekyll报404错误。后来发现是ruby对文件不够彻底。</p>
-
-
-	<p><h3><a href="/posts/jekyll%E6%96%87%E7%A8%BF%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98.html">阅读全文 &raquo;</a></h3></p>
-<hr>
-
-<h2>
-  <a href="/posts/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%85%B3%E4%BA%8Emarkdown.html">
-    markdown简单用法
-  </a> 
-  <div class="post-date">
-	<span class="glyphicon glyphicon-time"></span>
-	2017-11-13
-  </div>
-</h2>
-<hr>
-  <p>Markdown是一款标记语言，能够减轻在排版上的工作量。</p>
-
-
-	<p><h3><a href="/posts/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%85%B3%E4%BA%8Emarkdown.html">阅读全文 &raquo;</a></h3></p>
-<hr>
-
-<h2>
-  <a href="/posts/which-more-important.html">
-    人生什么更重要？[测试]
-  </a> 
-  <div class="post-date">
-	<span class="glyphicon glyphicon-time"></span>
-	2010-01-01
-  </div>
-</h2>
-<hr>
-  <h3 id="哪个更重要">哪个更重要？</h3>
-
-<blockquote>
-  <p>方向比努力重要，<br />
-身体比金钱重要，<br />
-生活比文凭重要，<br />
-情商比智商重要，<br />
-能力比知识重要，<br />
-行动比（愿望）空想重要。</p>
-</blockquote>
-
-<h3 id="一生最重要的7项资产">一生最重要的7项资产</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1，健康：人类的第一资产，  
-2，财富：资产的最重要诠释，  
-3，智慧：改变命运的资本，  
-4，婚姻与家庭：身心的避风港，  
-5，心灵：深查世界的棱镜，  
-6，友谊：一生快乐源泉，  
-7，人生的意义：成长的源动力。  
-</code></pre></div></div>
-
-<h3 id="人生四句话">人生四句话</h3>
-
-<p>把自己当成别人（痛苦），<br />
-把别人当成自己（同情），<br />
-把别人当成别人（尊重），<br />
-把自己当成自己（走自己的路）。</p>
-
-	<p><h3><a href="/posts/which-more-important.html">阅读全文 &raquo;</a></h3></p>
-<hr>
-
-
-<!-- Pager indicator -->
-<ul class="pager">
+<!-- next and previous -->
+<div style="margin-top:15px; margin-bottom:10px">
+  
+  <span class="next">
+    上篇：
+    <a href="/posts/%E5%85%B3%E4%BA%8E%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99-Jekyll%E5%BA%94%E7%94%A8.html">
+      关于个人博客网站-Jekyll应用
+    </a>
+  </span>
    
-</ul>
+  
+  <div style="float:right">
+  <span class="prev" >
+    下篇：
+    <a href="/posts/%E6%9D%A8%E5%BF%97%E6%B5%A9%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86.html">
+      个人简历
+    </a>
+  </span>
+  </div>
+  
+</div>
+<hr>
+<!-- Blog Comments -->
+<div class="media">
+  请修改_includes/comment.html添加评论代码。 
+</div>
         </div>
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">
@@ -399,30 +393,6 @@
                 </ul>
               </div> 
 			</div>
-          </div>		  
-		  <!-- Blog Links Well -->
-          <div class="well">
-            <h4>
-              友情链接
-            </h4>
-                        <ul class="list-unstyled">
-              <li>
-                <a href="http://www.panxw.com"><!-- 请保留友情链接，please remain as friend link-->
-                  潘学文博客
-                </a>
-              </li>
-              <li>
-                <a href="http://www.ruanyifeng.com/blog/" target="_blank">
-                  阮一峰的博客
-                </a>
-              </li>	
-              <li>
-                <a href="/links.html">
-                  交换友情链接
-                </a>
-              </li>				  
-            </ul>
- 
           </div>
         </div>
       </div>
@@ -446,4 +416,5 @@
     </div>
     <!-- /.container -->
   </body>
+
 </html>
