@@ -4,8 +4,9 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content=" - 杨志浩个人博客 - 作者:杨志浩"/>
-    <title></title>
+    <meta name="description" content="关于Python的flask框架的理解和实践 - 杨志浩个人博客 - 作者:杨志浩"/> 
+	<meta name="keywords" content="python,框架"/>
+    <title>关于Python的flask框架的理解和实践 - 杨志浩个人博客</title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom CSS -->
@@ -110,12 +111,142 @@
       <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-			<!-- Navi -->
-			
-			<!-- List -->
-			<ul class="list-unstyled">
-			
-			</ul>
+          <!-- Navi -->
+<a href="/">首页</a>&nbsp;>&nbsp;<a href="/posts/program.html">Python</a>&nbsp;>&nbsp;正文
+<!-- Title -->
+<h2>关于Python的flask框架的理解和实践</h2>
+<b>标签：</b><a href="/tags.html#python"><i>python</i></a>, <a href="/tags.html#框架"><i>框架</i></a>
+<div class="post-date">
+	<span class="glyphicon glyphicon-time"></span>
+	2017-12-08
+</div>
+<br/>
+
+<!-- content -->
+<div>
+<p>Markdown是一款标记语言，能够减轻在排版上的工作量。</p>
+
+<!-- more -->
+
+<p>### 
+第一部分 Flask简介
+第1章 安装
+<a href="./2017-11-25-关于Flask的一个简单的应用及Restful服务">Flask的安装可以参照</a>
+第2章 程序的基本结构
+2.1 初始化</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+<p>2.2 路由和视图函数</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@app.route('/')
+def index():
+	return '&lt;h1&gt;hello world&lt;/h1&gt;'
+
+</code></pre></div></div>
+<p>2.3 启动服务器</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from flask import Flask
+app = Flask(_name_)
+@app.route('/')
+def index():
+	return '&lt;h1&gt;hello world&lt;/h1&gt;'
+if _name_ == '_main_':
+	app.run(debug=True)
+	
+</code></pre></div></div>
+<p>2.4 一个完整的程序
+2.5 请求一响应循环
+2.5.1 程序和请求上下文
+2.5.2 请求调度
+2.5.3 请求钩子
+2.5.4 响应
+2.6 Flask扩展
+第3章 模板
+3.1 Jinja2模板引擎
+3.1.u1 渲染模板
+3.1.2 变量
+3.1.3 控制结构
+3.2 使用Flask—Bootstrap集成Twitter Bootstrap
+3.3 自定义错误页面
+3.4 链接
+3.5 静态文件
+3.6 使用：Flask—Moment本地化日期和时间
+第4章 web表单
+4.1 跨站请求伪造保护
+4.2 表单类
+4.3 把表单渲染成HTML
+4.4 在视图函数中处理表单
+4.5 重定向和用户会话
+4.6 Flash消息
+第5章 数据库
+5.1 SQL数据库
+5.2 NoSQL数据库
+5.3 使用SQL还是NoSQL
+5.4 Python数据库框架
+5.5 使用FlaskSQLAlchemy管理数据库
+5.6 定义模型
+5.7 关系
+5.8 数据库操作
+5.8.1 创建表
+5.8.2 插入行
+5.8.3 修改行
+5.8.4 册除行
+5.8.5 查询行
+5.9 在视图函数中操作数据库
+5.10 集成Python shell
+5.11 使用FlaskMigrate实现数据库迁移
+5.11.1 创建迁移仓库
+5.11.2 创建迁移脚本
+5.11.3 更新数据库
+……
+第6章 电子邮件
+第7章 大型程序的结构</p>
+
+<p>第二部分 实例：社会化博客程序
+第8章 用户认证
+第9章 用户角色
+第10章 用户资料
+第11章 博客文章
+第12章 关注者
+第13章 用户评论
+第14章 程序编程接口
+第三部分 成功在望
+第15章 测试
+第16章 性能
+第17章 部署
+第18章 其他资源</p>
+
+</div>
+
+<br/>
+<b>原创文章，转载请注明出处！</b>
+<br/>
+<b>本文链接：</b><a href="http://localhost:4000/posts/%E5%85%B3%E4%BA%8EPython%E7%9A%84flask%E6%A1%86%E6%9E%B6%E7%9A%84%E7%90%86%E8%A7%A3.html" title="关于Python的flask框架的理解和实践">关于Python的flask框架的理解和实践</a>
+
+<!-- next and previous -->
+<div style="margin-top:15px; margin-bottom:10px">
+  
+  <span class="next">
+    上篇：
+    <a href="/posts/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E4%BA%86%E8%A7%A3%E7%94%A8%E6%88%B7%E6%89%80%E5%9C%A8%E4%BC%81%E4%B8%9A%E5%92%8C%E7%94%A8%E6%88%B7%E7%9A%84%E9%9C%80%E6%B1%82.html">
+      如何快速了解用户所在企业和用户的需求
+    </a>
+  </span>
+   
+  
+  <div style="float:right">
+  <span class="prev" >
+    下篇：
+    <a href="/posts/%E5%A6%82%E4%BD%95%E4%BA%86%E8%A7%A3%E6%89%80%E9%9D%A2%E8%AF%95%E5%85%AC%E5%8F%B8%E7%9C%9F%E5%AE%9E%E6%83%85%E5%86%B5.html">
+      如何了解所面试公司真实情况
+    </a>
+  </span>
+  </div>
+  
+</div>
+<hr>
+<!-- Blog Comments -->
+<div class="media">
+  请修改_includes/comment.html添加评论代码。 
+</div>
         </div>
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">
