@@ -113,6 +113,215 @@
           <!-- Loop output paged posts -->
 
 <h3>
+  <a href="/posts/oracle%E5%BC%80%E5%8F%91%E4%B8%93%E9%A2%98%E4%B9%8B-%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE.html">
+    Oracle开发专题之：删除重复数据
+  </a> 
+  <div class="post-date">
+	<span class="glyphicon glyphicon-time"></span>
+	2017-12-19
+  </div>
+</h3>
+<hr>
+  <p>删除重复数据是个拓展性的话题，在不同数据量去重的环境都不一样，现在只是讨论三种简单的去重方法；后续有机会接触海量数据去重，再补充这个话题</p>
+
+<h4 id="使用distinct">使用distinct</h4>
+
+<p>select distinct *  from table1</p>
+
+<h4 id="使用rowid进行筛选一">使用rowid进行筛选`一</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE FROM test t1 
+ WHERE t1.ROWID NOT IN (
+     SELECT MAX(t2.rowid) 
+       FROM test t2 
+      WHERE t1.id = t2.id AND t1.seq = t2.seq);
+</code></pre></div></div>
+<h4 id="使用rowid进行筛选二">使用rowid进行筛选`二</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE FROM test
+  2   WHERE ROWID NOT IN (SELECT MAX(ROWID) FROM test GROUP BY id, seq);
+</code></pre></div></div>
+
+	<p><h4><a href="/posts/oracle%E5%BC%80%E5%8F%91%E4%B8%93%E9%A2%98%E4%B9%8B-%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<h3>
+  <a href="/posts/oracle%E4%B8%93%E9%A2%98%E5%BC%80%E5%8F%91%E4%B9%8B-%E5%88%86%E6%9E%90%E5%87%BD%E6%95%B0.html">
+    Oracle开发专题之：分析函数
+  </a> 
+  <div class="post-date">
+	<span class="glyphicon glyphicon-time"></span>
+	2017-12-19
+  </div>
+</h3>
+<hr>
+  <h3 id="需求分析">需求分析</h3>
+<p>为了满足分析需求如：</p>
+<ul>
+  <li>查找上一年度各个销售区域排名前10的员工</li>
+  <li>按区域查找上一年度订单总额占区域订单总额20%以上的客户</li>
+  <li>查找上一年度销售最差的部门所在的区域</li>
+  <li>查找上一年度销售最好和最差的产品</li>
+</ul>
+
+<p>感觉到这几个查询和我们日常遇到的查询有些不同，具体有：</p>
+<ul>
+  <li>需要对同样的数据进行不同级别的聚合操作</li>
+  <li>需要在表内将多条数据和同一条数据进行多次的比较</li>
+  <li>需要在排序完的结果集进行额外的过滤操作</li>
+</ul>
+
+
+	<p><h4><a href="/posts/oracle%E4%B8%93%E9%A2%98%E5%BC%80%E5%8F%91%E4%B9%8B-%E5%88%86%E6%9E%90%E5%87%BD%E6%95%B0.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<h3>
+  <a href="/posts/oracle%E4%B8%93%E9%A2%98%E5%BC%80%E5%8F%91%E4%B9%8B-%E5%88%86%E6%9E%90%E5%87%BD%E6%95%B0(%E4%B8%80.html">
+    Oracle开发专题之：分析函数一
+  </a> 
+  <div class="post-date">
+	<span class="glyphicon glyphicon-time"></span>
+	2017-12-19
+  </div>
+</h3>
+<hr>
+  <h3 id="需求分析">需求分析</h3>
+
+<ul>
+  <li>对所有客户按订单总额进行排名</li>
+  <li>按区域和客户订单总额进行排名</li>
+  <li>找出订单总额排名前13位的客户</li>
+  <li>找出订单总额最高、最低的客户</li>
+  <li>找出订单总额排名前25%的客户</li>
+</ul>
+
+<p>感觉到这几个查询和我们日常遇到的查询有些不同，具体有：</p>
+<ul>
+  <li>需要对同样的数据进行不同级别的聚合操作</li>
+  <li>需要在表内将多条数据和同一条数据进行多次的比较</li>
+  <li>需要在排序完的结果集进行额外的过滤操作</li>
+</ul>
+
+
+	<p><h4><a href="/posts/oracle%E4%B8%93%E9%A2%98%E5%BC%80%E5%8F%91%E4%B9%8B-%E5%88%86%E6%9E%90%E5%87%BD%E6%95%B0(%E4%B8%80.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<h3>
+  <a href="/posts/oracle%E5%BC%80%E5%8F%91%E4%B8%93%E9%A2%98%E4%B9%8B-%E9%9A%8F%E6%9C%BA%E6%9F%A5%E8%AF%A2.html">
+    Oracle开发专题之：随机查询
+  </a> 
+  <div class="post-date">
+	<span class="glyphicon glyphicon-time"></span>
+	2017-12-18
+  </div>
+</h3>
+<hr>
+  <p>随机查询是大表的数据情况的时候很重要。</p>
+
+
+	<p><h4><a href="/posts/oracle%E5%BC%80%E5%8F%91%E4%B8%93%E9%A2%98%E4%B9%8B-%E9%9A%8F%E6%9C%BA%E6%9F%A5%E8%AF%A2.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<h3>
+  <a href="/posts/oracle%E5%BC%80%E5%8F%91%E4%B8%93%E9%A2%98%E4%B9%8B-%E8%A1%8C%E5%88%97%E8%BD%AC%E6%8D%A2.html">
+    Oracle开发专题之：行列转换
+  </a> 
+  <div class="post-date">
+	<span class="glyphicon glyphicon-time"></span>
+	2017-12-18
+  </div>
+</h3>
+<hr>
+  <h4 id="行列转换总结">行列转换总结</h4>
+
+<p>横表转化为纵表：一般用all  union 
+纵表转化为横表：用聚集函数，decode函数或者case when ,分组</p>
+
+<h4 id="初始表">初始表</h4>
+<p>mon 部门dep 业绩yj
+——————————-
+一月份      01      10
+一月份      02      10
+一月份      03      5
+二月份      02      8
+二月份      04      9
+三月份      03      8</p>
+
+<h4 id="数据准备">数据准备</h4>
+
+<p>–竖表转化为横表
+create table tb_col
+(mon varchar2( 10),
+ dep varchar2( 10),
+ record01 integer
+)
+–truncate table tb_col;
+insert into tb_col values ( ‘January’,’01’ ,’10’);
+insert into tb_col values ( ‘January’,’02’ ,’10’);
+insert into tb_col values ( ‘January’,’03’ ,’5 ‘);
+insert into tb_col values ( ‘February’,’02’ ,’8 ‘);
+insert into tb_col values ( ‘February’,’04’ ,’9 ‘);
+insert into tb_col values ( ‘March’,’03’ ,’8 ‘);</p>
+
+<h4 id="纵表转横表">纵表转横表</h4>
+<p>table3 （result）</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  dep 一月份      二月份      三月份 --------------------------------------
+  01      10        null      null
+  02      10         8        null
+  03      null       5        8
+  04      null      null      9 ------------------------------------------
+</code></pre></div></div>
+
+<p>select * from tb_col;</p>
+<h5 id="方法1">方法1</h5>
+<p>–用case when的方法</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select DEP
+       , sum(case MON when 'January' then record01 else null END )   January
+       , sum(case MON when 'February' then record01 else null END )  February
+       , sum(case MON when 'March' then record01 else null END )     March
+from tb_col
+group by DEP;
+##### 方法2 
+--用decode的方法
+</code></pre></div></div>
+<p>select DEP
+       , sum(decode(MON,’January’ ,record01))  January
+       , sum(decode(MON,’February’ ,record01))  February
+       , sum(decode(MON,’March’ ,record01))  March
+from tb_col
+group by DEP;</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#### 纵表转横表
+--横表转化为表
+</code></pre></div></div>
+<p>create table tb_ran
+(
+ dep varchar2( 10),
+ January integer,
+ February integer,
+ March integer
+)</p>
+
+<p>insert into tb_ran
+select DEP
+       , sum(case MON when ‘January’ then record01 else null END )   January
+       , sum(case MON when ‘February’ then record01 else null END )  February
+       , sum(case MON when ‘March’ then record01 else null END )     March
+from tb_col
+group by DEP;</p>
+
+<p>select * from tb_ran</p>
+
+<p>select ‘January’ ,dep,January from tb_ran   union all
+select ‘February’ ,dep,February from tb_ran    union all
+select ‘March’ ,dep,March from tb_ran</p>
+
+<p>```</p>
+
+
+	<p><h4><a href="/posts/oracle%E5%BC%80%E5%8F%91%E4%B8%93%E9%A2%98%E4%B9%8B-%E8%A1%8C%E5%88%97%E8%BD%AC%E6%8D%A2.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<h3>
   <a href="/posts/%E5%A6%82%E4%BD%95%E4%BA%86%E8%A7%A3%E6%89%80%E9%9D%A2%E8%AF%95%E5%85%AC%E5%8F%B8%E7%9C%9F%E5%AE%9E%E6%83%85%E5%86%B5.html">
     如何了解所面试公司真实情况
   </a> 
@@ -157,87 +366,6 @@
 
 
 	<p><h4><a href="/posts/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E4%BA%86%E8%A7%A3%E7%94%A8%E6%88%B7%E6%89%80%E5%9C%A8%E4%BC%81%E4%B8%9A%E5%92%8C%E7%94%A8%E6%88%B7%E7%9A%84%E9%9C%80%E6%B1%82.html">阅读全文 &raquo;</a></h4></p>
-<hr>
-
-<h3>
-  <a href="/posts/%E5%85%B3%E4%BA%8Ehighcharts%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%A6%81%E6%B1%82%E5%92%8C%E6%88%90%E6%9E%9C.html">
-    关于highcharts的学习要求和学习成果
-  </a> 
-  <div class="post-date">
-	<span class="glyphicon glyphicon-time"></span>
-	2017-11-26
-  </div>
-</h3>
-<hr>
-  <p>highcharts是一个优秀的js插件，用于网页图表的可视化展现。</p>
-
-
-	<p><h4><a href="/posts/%E5%85%B3%E4%BA%8Ehighcharts%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%A6%81%E6%B1%82%E5%92%8C%E6%88%90%E6%9E%9C.html">阅读全文 &raquo;</a></h4></p>
-<hr>
-
-<h3>
-  <a href="/posts/%E6%9D%A8%E5%BF%97%E6%B5%A9%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86.html">
-    个人简历
-  </a> 
-  <div class="post-date">
-	<span class="glyphicon glyphicon-time"></span>
-	2017-11-25
-  </div>
-</h3>
-<hr>
-  <p>杨志浩个人简历</p>
-
-
-	<p><h4><a href="/posts/%E6%9D%A8%E5%BF%97%E6%B5%A9%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86.html">阅读全文 &raquo;</a></h4></p>
-<hr>
-
-<h3>
-  <a href="/posts/%E5%85%B3%E4%BA%8EFlask%E7%9A%84%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%BA%94%E7%94%A8%E5%8F%8ARestful%E6%9C%8D%E5%8A%A1.html">
-    关于Flask的一个简单的应用及Restful服务
-  </a> 
-  <div class="post-date">
-	<span class="glyphicon glyphicon-time"></span>
-	2017-11-25
-  </div>
-</h3>
-<hr>
-  <p>最近开始找关于接口服务，刚好自己时常看Python，所以借用Python的Flask框架学习一下。</p>
-
-
-	<p><h4><a href="/posts/%E5%85%B3%E4%BA%8EFlask%E7%9A%84%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%BA%94%E7%94%A8%E5%8F%8ARestful%E6%9C%8D%E5%8A%A1.html">阅读全文 &raquo;</a></h4></p>
-<hr>
-
-<h3>
-  <a href="/posts/%E5%85%B3%E4%BA%8E%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99-Jekyll%E5%BA%94%E7%94%A8.html">
-    关于个人博客网站-Jekyll应用
-  </a> 
-  <div class="post-date">
-	<span class="glyphicon glyphicon-time"></span>
-	2017-11-14
-  </div>
-</h3>
-<hr>
-  <p>在大学本科毕业的时候，自己对建站有很深的兴趣，希望能够建成一个自己的网站。但是事与愿违，后续的工作的内容与web差异很大，以致于后续网站的建设一直在心里放着。前段时间，自己偶然在上网的时候看到一个github+Jekyll的免费个人博客方案，自己也十分感兴趣。后续也了解下。这两天刚好项目不是很忙，自己按照教程的方案，下载了一系列的模板还是自己建站之旅。
-这篇文章主要是针对Jekyll的应用进行梳理。</p>
-
-
-	<p><h4><a href="/posts/%E5%85%B3%E4%BA%8E%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99-Jekyll%E5%BA%94%E7%94%A8.html">阅读全文 &raquo;</a></h4></p>
-<hr>
-
-<h3>
-  <a href="/posts/%E4%BC%81%E4%B8%9A%E4%BC%9A%E8%AE%A1%E5%87%86%E5%88%99%E7%AC%AC16%E5%8F%B7-%E6%94%BF%E5%BA%9C%E8%A1%A5%E5%8A%A9.html">
-    企业会计准则第16号——政府补助2017
-  </a> 
-  <div class="post-date">
-	<span class="glyphicon glyphicon-time"></span>
-	2017-11-14
-  </div>
-</h3>
-<hr>
-  <p>作者：财政部来源：发表于：2017-05-25</p>
-
-
-	<p><h4><a href="/posts/%E4%BC%81%E4%B8%9A%E4%BC%9A%E8%AE%A1%E5%87%86%E5%88%99%E7%AC%AC16%E5%8F%B7-%E6%94%BF%E5%BA%9C%E8%A1%A5%E5%8A%A9.html">阅读全文 &raquo;</a></h4></p>
 <hr>
 
 
@@ -329,6 +457,36 @@
                 <ul class="list-unstyled">
 				
                   <li>
+                    <a href="/posts/oracle%E5%BC%80%E5%8F%91%E4%B8%93%E9%A2%98%E4%B9%8B-%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE.html">
+                      Oracle开发专题之：删除重复数据
+                    </a>
+                  </li>
+				
+                  <li>
+                    <a href="/posts/oracle%E4%B8%93%E9%A2%98%E5%BC%80%E5%8F%91%E4%B9%8B-%E5%88%86%E6%9E%90%E5%87%BD%E6%95%B0.html">
+                      Oracle开发专题之：分析函数
+                    </a>
+                  </li>
+				
+                  <li>
+                    <a href="/posts/oracle%E4%B8%93%E9%A2%98%E5%BC%80%E5%8F%91%E4%B9%8B-%E5%88%86%E6%9E%90%E5%87%BD%E6%95%B0(%E4%B8%80.html">
+                      Oracle开发专题之：分析函数一
+                    </a>
+                  </li>
+				
+                  <li>
+                    <a href="/posts/oracle%E5%BC%80%E5%8F%91%E4%B8%93%E9%A2%98%E4%B9%8B-%E9%9A%8F%E6%9C%BA%E6%9F%A5%E8%AF%A2.html">
+                      Oracle开发专题之：随机查询
+                    </a>
+                  </li>
+				
+                  <li>
+                    <a href="/posts/oracle%E5%BC%80%E5%8F%91%E4%B8%93%E9%A2%98%E4%B9%8B-%E8%A1%8C%E5%88%97%E8%BD%AC%E6%8D%A2.html">
+                      Oracle开发专题之：行列转换
+                    </a>
+                  </li>
+				
+                  <li>
                     <a href="/posts/%E5%A6%82%E4%BD%95%E4%BA%86%E8%A7%A3%E6%89%80%E9%9D%A2%E8%AF%95%E5%85%AC%E5%8F%B8%E7%9C%9F%E5%AE%9E%E6%83%85%E5%86%B5.html">
                       如何了解所面试公司真实情况
                     </a>
@@ -355,36 +513,6 @@
                   <li>
                     <a href="/posts/%E6%9D%A8%E5%BF%97%E6%B5%A9%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86.html">
                       个人简历
-                    </a>
-                  </li>
-				
-                  <li>
-                    <a href="/posts/%E5%85%B3%E4%BA%8EFlask%E7%9A%84%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%BA%94%E7%94%A8%E5%8F%8ARestful%E6%9C%8D%E5%8A%A1.html">
-                      关于Flask的一个简单的应用及Restful服务
-                    </a>
-                  </li>
-				
-                  <li>
-                    <a href="/posts/%E5%85%B3%E4%BA%8E%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99-Jekyll%E5%BA%94%E7%94%A8.html">
-                      关于个人博客网站-Jekyll应用
-                    </a>
-                  </li>
-				
-                  <li>
-                    <a href="/posts/%E4%BC%81%E4%B8%9A%E4%BC%9A%E8%AE%A1%E5%87%86%E5%88%99%E7%AC%AC16%E5%8F%B7-%E6%94%BF%E5%BA%9C%E8%A1%A5%E5%8A%A9.html">
-                      企业会计准则第16号——政府补助2017
-                    </a>
-                  </li>
-				
-                  <li>
-                    <a href="/posts/%E4%BC%81%E4%B8%9A%E4%BC%9A%E8%AE%A1%E5%87%86%E5%88%99%E7%AC%AC16%E5%8F%B7-%E6%94%BF%E5%BA%9C%E8%A1%A5%E5%8A%A9.html">
-                      企业会计准则第16号——政府补助2017
-                    </a>
-                  </li>
-				
-                  <li>
-                    <a href="/posts/%E4%BC%81%E4%B8%9A%E4%BC%9A%E8%AE%A1%E5%87%86%E5%88%99%E7%AC%AC01%E5%8F%B7-%E5%AD%98%E8%B4%A7.html">
-                      企业会计准则第01号——存货2017
                     </a>
                   </li>
 				  

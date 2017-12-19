@@ -4,9 +4,9 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="问答：Faqs - 杨志浩个人博客 - 作者:杨志浩"/> 
-	
-    <title>问答：Faqs - 杨志浩个人博客</title>
+    <meta name="description" content="Oracle开发专题之：分析函数 - 杨志浩个人博客 - 作者:杨志浩"/> 
+	<meta name="keywords" content="oracle"/>
+    <title>Oracle开发专题之：分析函数 - 杨志浩个人博客</title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom CSS -->
@@ -111,23 +111,147 @@
       <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-          <p>记录工作中遇到的一些小问题及解决办法，以防忘记后重头再找答案。</p>
+          <!-- Navi -->
+<a href="/">首页</a>&nbsp;>&nbsp;<a href="/posts/read.html">读书笔记</a>&nbsp;>&nbsp;正文
+<!-- Title -->
+<h2>Oracle开发专题之：分析函数</h2>
+<b>标签：</b><a href="/tags.html#oracle"><i>oracle</i></a>
+<div class="post-date">
+	<span class="glyphicon glyphicon-time"></span>
+	2017-12-19
+</div>
+<br/>
 
-<h4 id="格式">格式：</h4>
-<p>问：Win7下 Eclipse中按”Alt+Ctrl+Down或Alt+Ctrl+Up”时，结果屏幕倒了怎么办？<br />
-答：是不是和其它应用的快捷键冲突了？比如Intel显卡，则可选择“图形属性”&gt;“选项和支持”，将对应快捷键换掉。参考：http://www.2cto.com/os/201201/116412.html</p>
+<!-- content -->
+<div>
+<h3 id="需求分析">需求分析</h3>
+<p>为了满足分析需求如：</p>
+<ul>
+  <li>查找上一年度各个销售区域排名前10的员工</li>
+  <li>按区域查找上一年度订单总额占区域订单总额20%以上的客户</li>
+  <li>查找上一年度销售最差的部门所在的区域</li>
+  <li>查找上一年度销售最好和最差的产品</li>
+</ul>
 
-<h4 id="或作为url收藏记录">或作为url收藏记录</h4>
-<p>1,Markdown语法：<a href="http://wowubuntu.com/markdown/basic.html">http://wowubuntu.com/markdown/basic.html</a><br />
-2,Oracle现在真是恶心，下载个Java SDK还非得让登陆不可。只好再找下载地址了: <a href="http://ghaffarian.net/downloads/">http://ghaffarian.net/downloads/</a><br />
-3,git文章收藏:<br />
-Git分支管理策略: <a href="http://www.ruanyifeng.com/blog/2012/07/git.html">http://www.ruanyifeng.com/blog/2012/07/git.html</a>  <br />
-Git查看、删除、重命名远程分支和tag: http://zengrong.net/post/1746.htm<br />
-4,Google无障碍浏览链接：<a href="https://github.com/greatfire/wiki">https://github.com/greatfire/wiki</a><br />
-5,在线Android等源码：<a href="http://www.grepcode.com/">http://www.grepcode.com/</a>, <a href="http://androidxref.com/">http://androidxref.com/</a><br />
-6,Twitter University: <a href="http://www.bluemobi.cn/">http://www.bluemobi.cn/</a><br />
-更多请看本文评论，欢迎来盖楼！</p>
+<p>感觉到这几个查询和我们日常遇到的查询有些不同，具体有：</p>
+<ul>
+  <li>需要对同样的数据进行不同级别的聚合操作</li>
+  <li>需要在表内将多条数据和同一条数据进行多次的比较</li>
+  <li>需要在排序完的结果集进行额外的过滤操作
+<!-- more --></li>
+</ul>
 
+<h3 id="数据准备">数据准备</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>create table orders_tmp(
+CUST_NBR          NUMBER(5)       NOT NULL       
+,REGION_ID        NUMBER(5)       NOT NULL
+,SALESPERSON_ID   NUMBER(5)       NOT NULL
+,YEAR             NUMBER(4)       NOT NULL
+,MONTH            NUMBER(2)       NOT NULL
+,TOT_ORDERS       NUMBER(7)       NOT NULL
+,TOT_SALES        NUMBER(11,2)    NOT NULL   
+);
+
+
+insert into orders_tmp values ('11','7','11','2001','7 ','2','12204');
+insert into orders_tmp values (' 4','5',' 4','2001','10','2','37802');
+insert into orders_tmp values (' 7','6',' 7','2001','2 ','3','3750 ');
+insert into orders_tmp values ('10','6',' 8','2001','1 ','2','21691');
+insert into orders_tmp values ('10','6',' 7','2001','2 ','3','42624');
+insert into orders_tmp values ('15','7','12','2000','5 ','6','24344');
+insert into orders_tmp values ('12','7',' 9','2000','6 ','2','50658');
+insert into orders_tmp values (' 1','5',' 2','2001','3 ','2','44494');
+insert into orders_tmp values (' 1','5',' 1','2001','9 ','2','74864');
+insert into orders_tmp values (' 2','5',' 4','2001','3 ','2','35060');
+insert into orders_tmp values (' 2','5',' 4','2001','4 ','4',' 6454');
+insert into orders_tmp values (' 2','5',' 1','2001','10','4','35580');
+
+</code></pre></div></div>
+
+<p>测试语句1:
+查询用户、地区、销售额、各地区累计销售额</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select o.cust_nbr customer,
+       o.region_id region,
+       sum(o.tot_sales) cust_sales,
+       sum(sum(o.tot_sales)) over(partition by o.region_id) region_sales
+from orders_tmp o
+where o.year = 2001
+group by o.region_id, o.cust_nbr;
+--结果
+   	CUSTOMER	REGION	CUST_SALES	REGION_SALES
+1	1	5	119358	234254
+2	2	5	77094	234254
+3	4	5	37802	234254
+4	7	6	3750	68065
+5	10	6	64315	68065
+6	11	7	12204	12204
+</code></pre></div></div>
+
+<p>测试语句2：
+查询11年中用户、地区、销售额、各地区累计销售额，筛选出那些个人订单总额占到区域订单总额20%以上的大客户</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select *
+from (select o.cust_nbr customer,
+             o.region_id region,
+             sum(o.tot_sales) cust_sales,
+             sum(sum(o.tot_sales)) over(partition by o.region_id) region_sales
+        from orders_tmp o
+       where o.year = 2001
+       group by o.region_id, o.cust_nbr) all_sales
+where all_sales.cust_sales &gt; all_sales.region_sales * 0.2;
+</code></pre></div></div>
+<p>结果</p>
+
+<p><img src="/img/post_img/2017121903.png" alt="" /></p>
+
+<p>测试语句3：
+查询11年中用户、地区、销售额、各地区累计销售额，筛选出那些个人订单总额占到区域订单总额20%以上的大客户</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select all_sales.*,100 * round(cust_sales / region_sales, 2) || '%' Percent
+from (select o.cust_nbr customer,
+             o.region_id region,
+             sum(o.tot_sales) cust_sales,
+             sum(sum(o.tot_sales)) over(partition by o.region_id) region_sales
+        from orders_tmp o
+       where o.year = 2001
+       group by o.region_id, o.cust_nbr) all_sales
+where all_sales.cust_sales &gt; all_sales.region_sales * 0.2;
+</code></pre></div></div>
+<p>结果</p>
+
+<p><img src="/img/post_img/2017121904.png" alt="" /></p>
+<h3 id="总结">总结：</h3>
+<ol>
+  <li>Over函数指明在那些字段上做分析，其内跟Partition by表示对数据进行分组。注意Partition by可以有多个字段。</li>
+  <li>Over函数可以和其它聚集函数、分析函数搭配，起到不同的作用。例如这里的SUM，还有诸如Rank，Dense_rank等。</li>
+</ol>
+
+</div>
+
+<br/>
+<b>原创文章，转载请注明出处！</b>
+<br/>
+<b>本文链接：</b><a href="http://localhost:4000/posts/oracle%E4%B8%93%E9%A2%98%E5%BC%80%E5%8F%91%E4%B9%8B-%E5%88%86%E6%9E%90%E5%87%BD%E6%95%B0.html" title="Oracle开发专题之：分析函数">Oracle开发专题之：分析函数</a>
+
+<!-- next and previous -->
+<div style="margin-top:15px; margin-bottom:10px">
+  
+  <span class="next">
+    上篇：
+    <a href="/posts/oracle%E4%B8%93%E9%A2%98%E5%BC%80%E5%8F%91%E4%B9%8B-%E5%88%86%E6%9E%90%E5%87%BD%E6%95%B0(%E4%B8%80.html">
+      Oracle开发专题之：分析函数一
+    </a>
+  </span>
+   
+  
+  <div style="float:right">
+  <span class="prev" >
+    下篇：
+    <a href="/posts/oracle%E5%BC%80%E5%8F%91%E4%B8%93%E9%A2%98%E4%B9%8B-%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE.html">
+      Oracle开发专题之：删除重复数据
+    </a>
+  </span>
+  </div>
+  
+</div>
 <hr>
 <!-- Blog Comments -->
 <div class="media">

@@ -4,12 +4,425 @@
  <title></title>
  <link href="http://www.yangzhihao.com/atom.xml" rel="self"/>
  <link href="http://www.yangzhihao.com"/>
- <updated>2017-12-14T14:40:52+08:00</updated>
+ <updated>2017-12-19T17:56:29+08:00</updated>
  <author>
    <name>杨志浩</name>
    <email>goddot@126.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Oracle开发专题之：删除重复数据</title>
+   <link href="http://www.yangzhihao.com/posts/oracle%E5%BC%80%E5%8F%91%E4%B8%93%E9%A2%98%E4%B9%8B-%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE.html"/>
+   <updated>2017-12-19T00:00:00+08:00</updated>
+   <id>/posts/oracle开发专题之：删除重复数据</id>
+   <content type="html">&lt;p&gt;删除重复数据是个拓展性的话题，在不同数据量去重的环境都不一样，现在只是讨论三种简单的去重方法；后续有机会接触海量数据去重，再补充这个话题&lt;/p&gt;
+
+&lt;h4 id=&quot;使用distinct&quot;&gt;使用distinct&lt;/h4&gt;
+
+&lt;p&gt;select distinct *  from table1&lt;/p&gt;
+
+&lt;h4 id=&quot;使用rowid进行筛选一&quot;&gt;使用rowid进行筛选`一&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DELETE FROM test t1 
+ WHERE t1.ROWID NOT IN (
+     SELECT MAX(t2.rowid) 
+       FROM test t2 
+      WHERE t1.id = t2.id AND t1.seq = t2.seq);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h4 id=&quot;使用rowid进行筛选二&quot;&gt;使用rowid进行筛选`二&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DELETE FROM test
+  2   WHERE ROWID NOT IN (SELECT MAX(ROWID) FROM test GROUP BY id, seq);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Oracle开发专题之：分析函数</title>
+   <link href="http://www.yangzhihao.com/posts/oracle%E4%B8%93%E9%A2%98%E5%BC%80%E5%8F%91%E4%B9%8B-%E5%88%86%E6%9E%90%E5%87%BD%E6%95%B0.html"/>
+   <updated>2017-12-19T00:00:00+08:00</updated>
+   <id>/posts/oracle专题开发之：分析函数</id>
+   <content type="html">&lt;h3 id=&quot;需求分析&quot;&gt;需求分析&lt;/h3&gt;
+&lt;p&gt;为了满足分析需求如：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;查找上一年度各个销售区域排名前10的员工&lt;/li&gt;
+  &lt;li&gt;按区域查找上一年度订单总额占区域订单总额20%以上的客户&lt;/li&gt;
+  &lt;li&gt;查找上一年度销售最差的部门所在的区域&lt;/li&gt;
+  &lt;li&gt;查找上一年度销售最好和最差的产品&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;感觉到这几个查询和我们日常遇到的查询有些不同，具体有：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;需要对同样的数据进行不同级别的聚合操作&lt;/li&gt;
+  &lt;li&gt;需要在表内将多条数据和同一条数据进行多次的比较&lt;/li&gt;
+  &lt;li&gt;需要在排序完的结果集进行额外的过滤操作
+&lt;!-- more --&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;数据准备&quot;&gt;数据准备&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;create table orders_tmp(
+CUST_NBR          NUMBER(5)       NOT NULL       
+,REGION_ID        NUMBER(5)       NOT NULL
+,SALESPERSON_ID   NUMBER(5)       NOT NULL
+,YEAR             NUMBER(4)       NOT NULL
+,MONTH            NUMBER(2)       NOT NULL
+,TOT_ORDERS       NUMBER(7)       NOT NULL
+,TOT_SALES        NUMBER(11,2)    NOT NULL   
+);
+
+
+insert into orders_tmp values ('11','7','11','2001','7 ','2','12204');
+insert into orders_tmp values (' 4','5',' 4','2001','10','2','37802');
+insert into orders_tmp values (' 7','6',' 7','2001','2 ','3','3750 ');
+insert into orders_tmp values ('10','6',' 8','2001','1 ','2','21691');
+insert into orders_tmp values ('10','6',' 7','2001','2 ','3','42624');
+insert into orders_tmp values ('15','7','12','2000','5 ','6','24344');
+insert into orders_tmp values ('12','7',' 9','2000','6 ','2','50658');
+insert into orders_tmp values (' 1','5',' 2','2001','3 ','2','44494');
+insert into orders_tmp values (' 1','5',' 1','2001','9 ','2','74864');
+insert into orders_tmp values (' 2','5',' 4','2001','3 ','2','35060');
+insert into orders_tmp values (' 2','5',' 4','2001','4 ','4',' 6454');
+insert into orders_tmp values (' 2','5',' 1','2001','10','4','35580');
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;测试语句1:
+查询用户、地区、销售额、各地区累计销售额&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select o.cust_nbr customer,
+       o.region_id region,
+       sum(o.tot_sales) cust_sales,
+       sum(sum(o.tot_sales)) over(partition by o.region_id) region_sales
+from orders_tmp o
+where o.year = 2001
+group by o.region_id, o.cust_nbr;
+--结果
+   	CUSTOMER	REGION	CUST_SALES	REGION_SALES
+1	1	5	119358	234254
+2	2	5	77094	234254
+3	4	5	37802	234254
+4	7	6	3750	68065
+5	10	6	64315	68065
+6	11	7	12204	12204
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;测试语句2：
+查询11年中用户、地区、销售额、各地区累计销售额，筛选出那些个人订单总额占到区域订单总额20%以上的大客户&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select *
+from (select o.cust_nbr customer,
+             o.region_id region,
+             sum(o.tot_sales) cust_sales,
+             sum(sum(o.tot_sales)) over(partition by o.region_id) region_sales
+        from orders_tmp o
+       where o.year = 2001
+       group by o.region_id, o.cust_nbr) all_sales
+where all_sales.cust_sales &amp;gt; all_sales.region_sales * 0.2;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;结果&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/post_img/2017121903.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;测试语句3：
+查询11年中用户、地区、销售额、各地区累计销售额，筛选出那些个人订单总额占到区域订单总额20%以上的大客户&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select all_sales.*,100 * round(cust_sales / region_sales, 2) || '%' Percent
+from (select o.cust_nbr customer,
+             o.region_id region,
+             sum(o.tot_sales) cust_sales,
+             sum(sum(o.tot_sales)) over(partition by o.region_id) region_sales
+        from orders_tmp o
+       where o.year = 2001
+       group by o.region_id, o.cust_nbr) all_sales
+where all_sales.cust_sales &amp;gt; all_sales.region_sales * 0.2;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;结果&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/post_img/2017121904.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;总结&quot;&gt;总结：&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;Over函数指明在那些字段上做分析，其内跟Partition by表示对数据进行分组。注意Partition by可以有多个字段。&lt;/li&gt;
+  &lt;li&gt;Over函数可以和其它聚集函数、分析函数搭配，起到不同的作用。例如这里的SUM，还有诸如Rank，Dense_rank等。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Oracle开发专题之：分析函数一</title>
+   <link href="http://www.yangzhihao.com/posts/oracle%E4%B8%93%E9%A2%98%E5%BC%80%E5%8F%91%E4%B9%8B-%E5%88%86%E6%9E%90%E5%87%BD%E6%95%B0(%E4%B8%80.html"/>
+   <updated>2017-12-19T00:00:00+08:00</updated>
+   <id>/posts/oracle专题开发之：分析函数(一）</id>
+   <content type="html">&lt;h3 id=&quot;需求分析&quot;&gt;需求分析&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;对所有客户按订单总额进行排名&lt;/li&gt;
+  &lt;li&gt;按区域和客户订单总额进行排名&lt;/li&gt;
+  &lt;li&gt;找出订单总额排名前13位的客户&lt;/li&gt;
+  &lt;li&gt;找出订单总额最高、最低的客户&lt;/li&gt;
+  &lt;li&gt;找出订单总额排名前25%的客户&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;感觉到这几个查询和我们日常遇到的查询有些不同，具体有：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;需要对同样的数据进行不同级别的聚合操作&lt;/li&gt;
+  &lt;li&gt;需要在表内将多条数据和同一条数据进行多次的比较&lt;/li&gt;
+  &lt;li&gt;需要在排序完的结果集进行额外的过滤操作&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h3 id=&quot;数据准备&quot;&gt;数据准备&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;create table user_order(
+ REGION_ID                               NUMBER(2)
+ ,CUSTOMER_ID                             NUMBER(2)
+ ,CUSTOMER_SALES                          NUMBER
+)
+
+insert into user_order values (' 5','  1 ','     151162  ');    
+insert into user_order values ('10',' 29 ','    903383   ');   
+insert into user_order values (' 6','  7 ','     971585  ');    
+insert into user_order values ('10',' 28 ','   986964    ');  
+insert into user_order values (' 9',' 21 ','  1020541    ');  
+insert into user_order values (' 9',' 22 ','  1036146    ');  
+insert into user_order values (' 8',' 16 ','  1068467    ');  
+insert into user_order values (' 6','  8 ','   1141638   ');   
+insert into user_order values (' 5','  3 ','   1161286   ');   
+insert into user_order values (' 5','  5 ','   1169926   ');   
+insert into user_order values (' 8',' 19 ','  1174421    ');  
+insert into user_order values (' 7',' 12 ','  1182275    ');  
+insert into user_order values (' 7',' 11 ','  1190421    ');  
+insert into user_order values (' 6',' 10 ','  1196748    ');  
+insert into user_order values (' 6','  9 ','   1208959   ');   
+insert into user_order values ('10',' 30 ',' 1216858     '); 
+insert into user_order values (' 5','  2 ','1224992      ');
+insert into user_order values (' 9',' 24 ','1224992      ');
+insert into user_order values (' 9',' 23 ','1224992      ');
+insert into user_order values (' 8',' 18 ','  1253840    ');  
+insert into user_order values (' 7',' 15 ','  1255591    ');  
+insert into user_order values (' 7',' 13 ','  1310434    ');  
+insert into user_order values ('10',' 27 ',' 1322747     '); 
+insert into user_order values (' 8',' 20 ','  1413722    ');  
+insert into user_order values (' 6','  6 ','   1788836   ');   
+insert into user_order values ('10',' 26 ',' 1808949     '); 
+insert into user_order values (' 5','  4 ','   1878275   ');   
+insert into user_order values (' 7',' 14 ','  1929774    ');  
+insert into user_order values (' 8',' 17 ','  1944281    ');  
+insert into user_order values (' 9',' 25 ','  2232703    ');  
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;测试语句1:
+查询销售额前12名的信息&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select rownum, t.*
+from (select * 
+      from user_order
+      order by customer_sales desc) t
+where rownum &amp;lt;= 12
+order by customer_sales desc;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;/img/post_img/2017121902.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
+结论：忽略掉相同交易金额的排名&lt;/p&gt;
+
+&lt;h3 id=&quot;使用分析函数来为记录排名&quot;&gt;使用分析函数来为记录排名&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select 
+region_id, customer_id, sum(customer_sales) total,
+rank() over(order by sum(customer_sales) desc) rank,
+dense_rank() over(order by sum(customer_sales) desc) dense_rank,
+row_number() over(order by sum(customer_sales) desc) row_number
+from user_order
+group by region_id, customer_id;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;结果 
+&lt;img src=&quot;/img/post_img/2017121901.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
+结论：
+使用rank之后，相同名次占相同排名，但是会空出原来排名，例如1,2,2,4,5
+使用dense_rank之后，相同名次占相同排名，后续会接着排名，例如1,2,2,3,4
+使用row_number之后，相同名次不占相同排名，随机连续排名&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;-ROW_NUMBER：
+
+Row_number函数返回一个唯一的值，当碰到相同数据时，排名按照记录集中记录的顺序依次递增。 
+
+- DENSE_RANK：
+Dense_rank函数返回一个唯一的值，除非当碰到相同数据时，此时所有相同数据的排名都是一样的。 
+
+- RANK：
+Rank函数返回一个唯一的值，除非遇到相同的数据时，此时所有相同数据的排名是一样的，同时会在最后一条相同记录和下一条不同记录的排名之间空出排名。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;使用分析函数为记录进行分组排名&quot;&gt;使用分析函数为记录进行分组排名&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select region_id, customer_id, 
+    sum(customer_sales) total,
+    rank() over(partition by region_id 
+      order by sum(customer_sales) desc) rank,
+    dense_rank() over(partition by region_id
+      order by sum(customer_sales) desc) dense_rank,
+    row_number() over(partition by region_id
+      order by sum(customer_sales) desc) row_number
+from user_order
+group by region_id, customer_id;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;/img/post_img/2017121905.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Oracle开发专题之：随机查询</title>
+   <link href="http://www.yangzhihao.com/posts/oracle%E5%BC%80%E5%8F%91%E4%B8%93%E9%A2%98%E4%B9%8B-%E9%9A%8F%E6%9C%BA%E6%9F%A5%E8%AF%A2.html"/>
+   <updated>2017-12-18T00:00:00+08:00</updated>
+   <id>/posts/oracle开发专题之：随机查询</id>
+   <content type="html">&lt;p&gt;随机查询是大表的数据情况的时候很重要。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+&lt;h4 id=&quot;数据准备&quot;&gt;数据准备&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;创建物理表
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;create  table users1
+(
+ID varchar(10),
+date_time varchar2(15),
+name varchar(50),
+sexy varchar(2))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;准备数据
+通过python随机生成数据形成csv文件&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;导入数据
+通过创建生成ctl文件导入
+```
+load data&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;infile ‘C:\Users\Administrator\Desktop\Python\random_generate_data\data.csv’&lt;/p&gt;
+
+&lt;p&gt;into table “USERS1”&lt;/p&gt;
+
+&lt;p&gt;fields terminated by ‘ ‘
+(ID,date_time,name,sexy)&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+在cmd中执行以下命令
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;sqlldr userid=nc63/123456@NC control=C:\Users\Administrator\Desktop\Python\random_generate_data\test.ctl log=C:\Users\Administrator\Desktop\Python\random_generate_data\test.log&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+
+### 随机查询
+
+方法一：通过dbms_random.random
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;select * from (select * from USERS1 order by dbms_random.random) where rownum &amp;lt;= 20000;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;耗时：7.7s 
+
+方法二：通过dbms_random.value 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;select * from (select * from USERS1 order by dbms_random.value) where rownum &amp;lt;= 20000;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;耗时：4.6s 
+
+方法三：通过采样表扫描
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;select * from (select * from USERS1 sample(10)) where rownum &amp;lt;= 20000;
+```
+耗时：0.1s&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Oracle开发专题之：行列转换</title>
+   <link href="http://www.yangzhihao.com/posts/oracle%E5%BC%80%E5%8F%91%E4%B8%93%E9%A2%98%E4%B9%8B-%E8%A1%8C%E5%88%97%E8%BD%AC%E6%8D%A2.html"/>
+   <updated>2017-12-18T00:00:00+08:00</updated>
+   <id>/posts/oracle开发专题之：行列转换</id>
+   <content type="html">&lt;h4 id=&quot;行列转换总结&quot;&gt;行列转换总结&lt;/h4&gt;
+
+&lt;p&gt;横表转化为纵表：一般用all  union 
+纵表转化为横表：用聚集函数，decode函数或者case when ,分组&lt;/p&gt;
+
+&lt;h4 id=&quot;初始表&quot;&gt;初始表&lt;/h4&gt;
+&lt;p&gt;mon 部门dep 业绩yj
+——————————-
+一月份      01      10
+一月份      02      10
+一月份      03      5
+二月份      02      8
+二月份      04      9
+三月份      03      8&lt;/p&gt;
+
+&lt;h4 id=&quot;数据准备&quot;&gt;数据准备&lt;/h4&gt;
+
+&lt;p&gt;–竖表转化为横表
+create table tb_col
+(mon varchar2( 10),
+ dep varchar2( 10),
+ record01 integer
+)
+–truncate table tb_col;
+insert into tb_col values ( ‘January’,’01’ ,’10’);
+insert into tb_col values ( ‘January’,’02’ ,’10’);
+insert into tb_col values ( ‘January’,’03’ ,’5 ‘);
+insert into tb_col values ( ‘February’,’02’ ,’8 ‘);
+insert into tb_col values ( ‘February’,’04’ ,’9 ‘);
+insert into tb_col values ( ‘March’,’03’ ,’8 ‘);&lt;/p&gt;
+
+&lt;h4 id=&quot;纵表转横表&quot;&gt;纵表转横表&lt;/h4&gt;
+&lt;p&gt;table3 （result）&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  dep 一月份      二月份      三月份 --------------------------------------
+  01      10        null      null
+  02      10         8        null
+  03      null       5        8
+  04      null      null      9 ------------------------------------------
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;select * from tb_col;&lt;/p&gt;
+&lt;h5 id=&quot;方法1&quot;&gt;方法1&lt;/h5&gt;
+&lt;p&gt;–用case when的方法&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select DEP
+       , sum(case MON when 'January' then record01 else null END )   January
+       , sum(case MON when 'February' then record01 else null END )  February
+       , sum(case MON when 'March' then record01 else null END )     March
+from tb_col
+group by DEP;
+##### 方法2 
+--用decode的方法
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;select DEP
+       , sum(decode(MON,’January’ ,record01))  January
+       , sum(decode(MON,’February’ ,record01))  February
+       , sum(decode(MON,’March’ ,record01))  March
+from tb_col
+group by DEP;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#### 纵表转横表
+--横表转化为表
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;create table tb_ran
+(
+ dep varchar2( 10),
+ January integer,
+ February integer,
+ March integer
+)&lt;/p&gt;
+
+&lt;p&gt;insert into tb_ran
+select DEP
+       , sum(case MON when ‘January’ then record01 else null END )   January
+       , sum(case MON when ‘February’ then record01 else null END )  February
+       , sum(case MON when ‘March’ then record01 else null END )     March
+from tb_col
+group by DEP;&lt;/p&gt;
+
+&lt;p&gt;select * from tb_ran&lt;/p&gt;
+
+&lt;p&gt;select ‘January’ ,dep,January from tb_ran   union all
+select ‘February’ ,dep,February from tb_ran    union all
+select ‘March’ ,dep,March from tb_ran&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>如何了解所面试公司真实情况</title>
