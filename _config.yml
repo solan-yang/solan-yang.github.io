@@ -11,7 +11,7 @@ url: http://192.168.88.156:4000
 baseurl:     
 domain: www.yangzhihao.com
 all_categories: [
-["finance&accounting", "金融财务","/posts/finance.html"], 
+["finance&accounting", "财务会计","/posts/finance.html"], 
 ["python", "Python","/posts/program.html"],
 ["web", "Web建站","/posts/web.html"], 
 ["datamart", "数据仓库","/posts/dataMart.html"],

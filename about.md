@@ -5,15 +5,15 @@ title: "关于：About"
 Welcome to visit my blog!
 
 #### 1.Personal Info
-Name: Zhihao Yang(潘学文)  
+Name: Zhihao Yang(杨志浩)  
 Gender: Male  
-City: Wuhan, China  
+City: 中国 北京  
 Career: Software developer(Android&Linux&Web)  
 
 #### 2.My Links
-Blog: <http://www.panxw.com>  
-GitHub: <https://github.com/panxw>  
-LinkedIn: <http://www.linkedin.com/in/panxw>  
+Blog: <暂无>  
+GitHub: <暂无>  
+LinkedIn: <暂无>  
 
 
 #### 3.Contract
